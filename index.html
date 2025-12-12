@@ -699,6 +699,35 @@
             font-weight: bold;
             z-index: 1;
         }
+        
+        /* 联系信息样式 */
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(0, 255, 157, 0.1);
+            transform: translateX(5px);
+        }
+        
+        .contact-item i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            width: 30px;
+        }
     </style>
 </head>
 <body>
@@ -802,6 +831,7 @@
                         <span><i class="fas fa-calendar"></i> 2025-01-15</span>
                     </div>
                     <div class="file-action">
+                        <!-- 更新文件路径 -->
                         <a href="papers/几何弦统一理论总纲.pdf" class="btn-download" download="几何弦统一理论总纲.pdf">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
@@ -825,6 +855,7 @@
                         <span><i class="fas fa-calendar"></i> 2025-01-25</span>
                     </div>
                     <div class="file-action">
+                        <!-- 更新文件路径 -->
                         <a href="papers/四步学习指南.pdf" class="btn-download" download="四步学习指南.pdf">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
@@ -848,6 +879,7 @@
                         <span><i class="fas fa-calendar"></i> 2025-02-05</span>
                     </div>
                     <div class="file-action">
+                        <!-- 更新文件路径 -->
                         <a href="papers/补丁-几何必然取代数学假设.pdf" class="btn-download" download="几何必然性补丁.pdf">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
@@ -872,7 +904,8 @@
                         <span><i class="fas fa-calendar"></i> 2025-02-10</span>
                     </div>
                     <div class="file-action">
-                        <a href="presentations/五步讲解PPT.pptx" class="btn-download" download="几何弦理论演讲PPT.pptx">
+                        <!-- 更新文件路径 -->
+                        <a href="papers/五步讲解PPT完整版.pptx" class="btn-download" download="几何弦理论演讲PPT.pptx">
                             <i class="fas fa-download"></i> 下载PPT
                         </a>
                         <a href="#" class="btn-preview" onclick="showModal('ppt-preview-modal')">
@@ -895,10 +928,11 @@
                         <span><i class="fas fa-calendar"></i> 2025-02-15</span>
                     </div>
                     <div class="file-action">
-                        <a href="presentations/演讲逐字稿.pdf" class="btn-download" download="演讲逐字稿.pdf">
+                        <!-- 更新文件路径 -->
+                        <a href="papers/演讲逐字稿与教学大纲.pdf" class="btn-download" download="演讲逐字稿.pdf">
                             <i class="fas fa-download"></i> 下载文稿
                         </a>
-                        <a href="presentations/演讲逐字稿.pdf" class="btn-preview" target="_blank">
+                        <a href="papers/演讲逐字稿与教学大纲.pdf" class="btn-preview" target="_blank">
                             <i class="fas fa-eye"></i> 在线预览
                         </a>
                     </div>
@@ -918,6 +952,7 @@
                         <span><i class="fas fa-calendar"></i> 2025-02-20</span>
                     </div>
                     <div class="file-action">
+                        <!-- 更新文件路径 -->
                         <a href="papers/人文改革方案.pdf" class="btn-download" download="人文改革方案.pdf">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
@@ -963,7 +998,8 @@
             
             <!-- 主要下载按钮 -->
             <div style="margin: 2rem 0;">
-                <a href="papers-all.zip" 
+                <!-- 更新ZIP文件路径 -->
+                <a href="papers/papers-all.zip" 
                    class="download-button" 
                    id="download-all-pdf"
                    style="padding: 15px 40px; font-size: 1.1rem;"
@@ -978,7 +1014,7 @@
                 <a href="#" class="btn-preview" onclick="showBundleContents()" style="text-decoration: none;">
                     <i class="fas fa-list"></i> 查看包含文件
                 </a>
-                <a href="https://github.com/你的用户名/geometry-string-map/tree/main/papers" 
+                <a href="https://github.com/yuanzhichun/geometry-string-map/tree/main/papers" 
                    class="btn-preview" 
                    target="_blank"
                    style="text-decoration: none;">
@@ -1016,7 +1052,7 @@
                 </div>
                 <h3>GitHub协作</h3>
                 <p>在GitHub上fork仓库，提交改进建议或指出错误。</p>
-                <a href="https://github.com/你的用户名/geometry-string-map" 
+                <a href="https://github.com/yuanzhichun/geometry-string-map" 
                    class="cta-button" 
                    style="padding: 10px 20px; margin-top: 1rem; display: inline-block;"
                    target="_blank">
@@ -1030,7 +1066,7 @@
                 </div>
                 <h3>议题讨论</h3>
                 <p>在Issues中提出问题、建议，或参与现有讨论。</p>
-                <a href="https://github.com/你的用户名/geometry-string-map/issues" 
+                <a href="https://github.com/yuanzhichun/geometry-string-map/issues" 
                    class="cta-button" 
                    style="padding: 10px 20px; margin-top: 1rem; display: inline-block;"
                    target="_blank">
@@ -1044,9 +1080,10 @@
                 </div>
                 <h3>文档改进</h3>
                 <p>帮助我们完善文档、翻译内容或修正错误。</p>
-                <a href="resources/如何参与贡献.md" 
+                <a href="https://github.com/yuanzhichun/geometry-string-map/blob/main/CONTRIBUTING.md" 
                    class="cta-button" 
-                   style="padding: 10px 20px; margin-top: 1rem; display: inline-block;">
+                   style="padding: 10px 20px; margin-top: 1rem; display: inline-block;"
+                   target="_blank">
                     查看贡献指南
                 </a>
             </div>
@@ -1057,7 +1094,7 @@
             <h4><i class="fas fa-question-circle"></i> 当前开放问题</h4>
             <ul style="list-style: none; padding-left: 0;">
                 <li style="padding: 10px 0; border-bottom: 1px solid var(--glass-border);">
-                    <a href="https://github.com/你的用户名/geometry-string-map/issues/1" 
+                    <a href="https://github.com/yuanzhichun/geometry-string-map/issues/1" 
                        style="color: var(--light); text-decoration: none; display: block;"
                        target="_blank">
                         <i class="fas fa-circle" style="color: var(--primary); font-size: 0.8rem;"></i>
@@ -1066,7 +1103,7 @@
                     </a>
                 </li>
                 <li style="padding: 10px 0; border-bottom: 1px solid var(--glass-border);">
-                    <a href="https://github.com/你的用户名/geometry-string-map/issues/2" 
+                    <a href="https://github.com/yuanzhichun/geometry-string-map/issues/2" 
                        style="color: var(--light); text-decoration: none; display: block;"
                        target="_blank">
                         <i class="fas fa-circle" style="color: var(--accent); font-size: 0.8rem;"></i>
@@ -1075,7 +1112,7 @@
                     </a>
                 </li>
                 <li style="padding: 10px 0;">
-                    <a href="https://github.com/你的用户名/geometry-string-map/issues/3" 
+                    <a href="https://github.com/yuanzhichun/geometry-string-map/issues/3" 
                        style="color: var(--light); text-decoration: none; display: block;"
                        target="_blank">
                         <i class="fas fa-circle" style="color: var(--secondary); font-size: 0.8rem;"></i>
@@ -1183,9 +1220,107 @@
                 <li>包含：演讲备注、动画效果、参考文献</li>
             </ul>
             <div style="margin-top: 2rem; text-align: center;">
-                <a href="presentations/五步讲解PPT.pptx" class="download-button" download="几何弦理论演讲PPT.pptx">
+                <!-- 更新文件路径 -->
+                <a href="papers/五步讲解PPT完整版.pptx" class="download-button" download="几何弦理论演讲PPT.pptx">
                     <i class="fas fa-download"></i> 立即下载PPT
                 </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 联系弹窗 -->
+    <div class="modal" id="contact-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('contact-modal')">&times;</span>
+            <h3><i class="fas fa-envelope"></i> 联系信息</h3>
+            <p>欢迎联系我进行讨论、合作或提供反馈：</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>邮箱：</strong>
+                        <a href="mailto:3114228696@qq.com" style="color: var(--primary); text-decoration: none;">
+                            3114228696@qq.com
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>电话：</strong>
+                        <a href="tel:+8613377886896" style="color: var(--primary); text-decoration: none;">
+                            +86 133 7788 6896
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <div>
+                        <strong>GitHub：</strong>
+                        <a href="https://github.com/yuanzhichun/geometry-string-map" 
+                           style="color: var(--primary); text-decoration: none;"
+                           target="_blank">
+                            yuanzhichun/geometry-string-map
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <i class="fas fa-comments"></i>
+                    <div>
+                        <strong>讨论区：</strong>
+                        <a href="https://github.com/yuanzhichun/geometry-string-map/discussions" 
+                           style="color: var(--primary); text-decoration: none;"
+                           target="_blank">
+                            前往GitHub Discussions
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1rem; background: rgba(0, 255, 157, 0.1); border-radius: 8px;">
+                <p style="margin: 0; font-size: 0.9rem;">
+                    <i class="fas fa-info-circle"></i> 
+                    建议优先通过GitHub Issues或Discussions进行公开讨论，这样可以帮助更多人参与和了解。
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 订阅弹窗 -->
+    <div class="modal" id="subscribe-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('subscribe-modal')">&times;</span>
+            <h3><i class="fas fa-newspaper"></i> 订阅更新</h3>
+            <p>订阅以获取理论的最新进展和更新通知：</p>
+            
+            <form id="subscribe-form" style="margin-top: 1.5rem;">
+                <div style="margin-bottom: 1rem;">
+                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">邮箱地址</label>
+                    <input type="email" id="email" 
+                           style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--glass-border); background: var(--darker); color: var(--light);"
+                           placeholder="your@email.com" required>
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem;">
+                        <input type="checkbox" required>
+                        我同意接收关于几何弦理论的更新通知
+                    </label>
+                </div>
+                
+                <button type="submit" class="download-button" style="width: 100%; justify-content: center;">
+                    <i class="fas fa-paper-plane"></i> 订阅更新
+                </button>
+            </form>
+            
+            <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8; text-align: center;">
+                或者关注 <a href="https://github.com/yuanzhichun/geometry-string-map" 
+                       style="color: var(--primary);"
+                       target="_blank">GitHub仓库</a> 获取实时更新
             </div>
         </div>
     </div>
@@ -1196,7 +1331,7 @@
         <p>一个开放、生长、协作的思想生态系统</p>
         
         <div class="social-links">
-            <a href="https://github.com/你的用户名/geometry-string-map" target="_blank">
+            <a href="https://github.com/yuanzhichun/geometry-string-map" target="_blank">
                 <i class="fab fa-github"></i>
             </a>
             <a href="#" onclick="showModal('contact-modal')">
@@ -1208,6 +1343,12 @@
             <a href="#" onclick="showModal('subscribe-modal')">
                 <i class="fas fa-newspaper"></i>
             </a>
+        </div>
+        
+        <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
+            <p>联系作者：<a href="mailto:3114228696@qq.com" style="color: var(--primary);">3114228696@qq.com</a> | 
+                <a href="tel:+8613377886896" style="color: var(--primary);">+86 133 7788 6896</a>
+            </p>
         </div>
         
         <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
@@ -1335,6 +1476,11 @@
             
             // 记录下载事件（实际使用中可以发送到统计服务）
             console.log('用户下载了完整论文库');
+            
+            // 实际下载跟踪（这里只是模拟，实际应该发送到后端）
+            setTimeout(() => {
+                console.log('下载完成');
+            }, 3000);
         }
 
         // 显示压缩包内容
@@ -1389,7 +1535,8 @@
                     { name: '几何弦统一理论总纲.pdf', size: 345000 },
                     { name: '四步学习指南.pdf', size: 520000 },
                     { name: '补丁-几何必然取代数学假设.pdf', size: 405000 },
-                    { name: '宇宙信息升维猜想终版.pdf', size: 125000 },
+                    { name: '五步讲解PPT完整版.pptx', size: 5200000 },
+                    { name: '演讲逐字稿与教学大纲.pdf', size: 320000 },
                     { name: '人文改革方案.pdf', size: 280000 }
                 ];
                 
@@ -1427,10 +1574,10 @@
                     const info = await response.json();
                     
                     // 更新文件数量
-                    document.getElementById('pdf-count').innerHTML = info.fileCount || '5';
+                    document.getElementById('pdf-count').innerHTML = info.fileCount || '6';
                     
                     // 更新压缩包大小
-                    document.getElementById('pdf-size').innerHTML = formatFileSize(info.totalSize) || '1.6MB';
+                    document.getElementById('pdf-size').innerHTML = formatFileSize(info.totalSize) || '7.0MB';
                     
                     // 更新最后更新时间
                     const updateDate = new Date(info.lastUpdated);
@@ -1448,14 +1595,14 @@
                     }
                 } else {
                     // 如果无法获取，使用默认值
-                    document.getElementById('pdf-count').innerHTML = '5';
-                    document.getElementById('pdf-size').innerHTML = '1.6MB';
+                    document.getElementById('pdf-count').innerHTML = '6';
+                    document.getElementById('pdf-size').innerHTML = '7.0MB';
                     document.getElementById('last-bundle').innerHTML = '今天';
                 }
             } catch (error) {
                 // 出错时使用默认值
-                document.getElementById('pdf-count').innerHTML = '5';
-                document.getElementById('pdf-size').innerHTML = '1.6MB';
+                document.getElementById('pdf-count').innerHTML = '6';
+                document.getElementById('pdf-size').innerHTML = '7.0MB';
                 document.getElementById('last-bundle').innerHTML = '今天';
             }
         }
@@ -1468,19 +1615,23 @@
                 
                 // 更新下载统计
                 const downloadCountElement = document.getElementById('total-downloads');
-                let count = parseInt(downloadCountElement.textContent.replace(/,/g, '')) || 0;
-                downloadCountElement.textContent = (count + 1).toLocaleString();
+                if (downloadCountElement) {
+                    let count = parseInt(downloadCountElement.textContent.replace(/,/g, '')) || 0;
+                    downloadCountElement.textContent = (count + 1).toLocaleString();
+                }
                 
                 // 显示下载提示
                 const indicator = document.getElementById('downloadIndicator');
                 const downloadText = document.getElementById('downloadText');
                 
-                indicator.classList.add('active');
-                downloadText.textContent = `正在下载: ${filename}`;
-                
-                setTimeout(() => {
-                    indicator.classList.remove('active');
-                }, 2000);
+                if (indicator && downloadText) {
+                    indicator.classList.add('active');
+                    downloadText.textContent = `正在下载: ${filename}`;
+                    
+                    setTimeout(() => {
+                        indicator.classList.remove('active');
+                    }, 2000);
+                }
             });
         });
         
@@ -1515,6 +1666,34 @@
                 }
             });
         }
+        
+        // 订阅表单处理
+        document.getElementById('subscribe-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            
+            // 显示成功消息
+            const indicator = document.getElementById('downloadIndicator');
+            const downloadText = document.getElementById('downloadText');
+            
+            if (indicator && downloadText) {
+                indicator.classList.add('active');
+                downloadText.textContent = `已订阅: ${email}`;
+                
+                setTimeout(() => {
+                    indicator.classList.remove('active');
+                    closeModal('subscribe-modal');
+                    document.getElementById('email').value = '';
+                    
+                    // 显示临时成功消息
+                    downloadText.textContent = '订阅成功！';
+                    indicator.classList.add('active');
+                    setTimeout(() => indicator.classList.remove('active'), 2000);
+                }, 1500);
+            }
+            
+            console.log(`用户订阅: ${email}`);
+        });
         
         // 初始化
         window.addEventListener('load', () => {
