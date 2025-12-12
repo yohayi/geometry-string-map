@@ -1,0 +1,1384 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>几何弦统一理论 | 智慧地图</title>
+    
+    <!-- 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    
+    <!-- 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- 粒子效果库 -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #00ff9d;  /* 量子绿 */
+            --secondary: #667eea; /* 宇宙蓝 */
+            --accent: #ff6b9d;   /* 活力粉 */
+            --dark: #0a0a1a;     /* 深空黑 */
+            --darker: #050510;
+            --light: #e0e0ff;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --success: #00ff9d;
+            --warning: #ffb74d;
+            --info: #29b6f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* 粒子背景 */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* 视频封面容器 */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+        }
+        
+        /* 渐变覆盖层 */
+        .gradient-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(10, 10, 26, 0.9) 0%,
+                rgba(102, 126, 234, 0.2) 50%,
+                rgba(0, 255, 157, 0.1) 100%
+            );
+            z-index: 0;
+        }
+        
+        /* 主标题区域 */
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 1000px;
+            padding: 2rem;
+        }
+        
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--primary);
+            letter-spacing: 4px;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+        
+        .main-title {
+            font-size: 4.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.1;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* 导航菜单 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 16, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+            background: rgba(0, 255, 157, 0.1);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* 霓虹按钮 */
+        .cta-button {
+            display: inline-block;
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            letter-spacing: 1px;
+            margin: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .cta-button:hover {
+            background: rgba(0, 255, 157, 0.2);
+            box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
+            transform: translateY(-3px);
+        }
+        
+        /* 下载按钮 */
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .download-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .download-button:active {
+            transform: translateY(-1px);
+        }
+        
+        /* 玻璃态卡片 */
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 255, 157, 0.3);
+        }
+        
+        /* 内容区域 */
+        .content-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+        
+        /* 网格布局 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        /* 文件卡片 */
+        .file-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .file-card:hover {
+            border-color: var(--primary);
+            background: rgba(0, 255, 157, 0.05);
+            transform: translateY(-5px);
+        }
+        
+        .file-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .file-card:hover::before {
+            left: 100%;
+        }
+        
+        .file-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+        
+        .file-info {
+            flex: 1;
+        }
+        
+        .file-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+        }
+        
+        .file-info p {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 0.5rem;
+        }
+        
+        .file-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        .file-action {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .btn-download, .btn-preview {
+            padding: 6px 12px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-download {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .btn-download:hover {
+            background: rgba(0, 255, 157, 0.2);
+        }
+        
+        .btn-preview {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+        }
+        
+        .btn-preview:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+        
+        /* 文件统计 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .stat-item {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 4rem auto;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 80px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+            z-index: 1;
+        }
+        
+        .timeline-date {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            margin-top: 6rem;
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .social-links a:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .content-section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .navbar {
+                padding: 1rem;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background: rgba(5, 5, 16, 0.95);
+                flex-direction: column;
+                padding: 2rem;
+                transition: left 0.3s ease;
+                gap: 1rem;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .timeline:before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+            
+            .timeline-item:before {
+                left: 12px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .file-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .file-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .file-meta {
+                justify-content: center;
+            }
+        }
+        
+        /* 进度条 */
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: var(--glass);
+            border-radius: 2px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+        
+        /* 弹窗 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: var(--darker);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .close-modal {
+            float: right;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--light);
+        }
+        
+        /* 动画类 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+        .delay-4 { animation-delay: 0.8s; }
+        
+        /* 下载指示器 */
+        .download-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 1rem;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .download-indicator.active {
+            display: flex;
+            animation: slideInUp 0.3s ease;
+        }
+        
+        @keyframes slideInUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div id="particles-js"></div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">GEOMETRIC STRING</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="nav-menu" id="navMenu">
+                <a href="#theory" class="nav-link">理论框架</a>
+                <a href="#resources" class="nav-link">核心资源</a>
+                <a href="#collaboration" class="nav-link">开放协作</a>
+                <a href="#roadmap" class="nav-link">发展路线</a>
+                <a href="#stats" class="nav-link">数据统计</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 视频封面区域 -->
+    <section class="hero-section">
+        <div class="video-container">
+            <video autoplay muted loop playsinline>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-geometric-motion-background-1588-large.mp4" type="video/mp4">
+                <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="几何背景">
+            </video>
+            <div class="gradient-overlay"></div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="logo">GEOMETRIC STRING UNIFICATION THEORY</div>
+            <h1 class="main-title">几何弦统一理论</h1>
+            <p class="subtitle">探索宇宙的几何本质 - 从几何公理到万物法则的完整理论框架，正在开放协作中生长</p>
+            <div>
+                <a href="#resources" class="cta-button">
+                    <i class="fas fa-download"></i> 获取资源
+                </a>
+                <a href="#collaboration" class="cta-button">
+                    <i class="fas fa-users"></i> 加入协作
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 板块1：理论框架 -->
+    <section id="theory" class="content-section">
+        <h2 class="section-title fade-in">理论框架</h2>
+        <div class="grid-container">
+            <div class="glass-card fade-in delay-1">
+                <h3><i class="fas fa-shapes"></i> 几何第一性</h3>
+                <p>物理实在的基本单元是几何结构，而不是物质点。几何先于物理，关系先于实体。这是整个理论体系的哲学基石。</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 90%"></div>
+                </div>
+                <small>理论完善度: 90%</small>
+            </div>
+            <div class="glass-card fade-in delay-2">
+                <h3><i class="fas fa-expand-arrows-alt"></i> 维度涌现</h3>
+                <p>从三维几何关系自然推导出九维空间：D(3)=9，高维不是假设而是几何必然。这一突破解决了弦理论的维度困境。</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%"></div>
+                </div>
+                <small>数学严谨度: 85%</small>
+            </div>
+            <div class="glass-card fade-in delay-3">
+                <h3><i class="fas fa-atom"></i> 万物涌现</h3>
+                <p>粒子与力从几何弦的量子振动中自然涌现，统一描述所有基本相互作用。标准模型成为几何弦理论的低能近似。</p>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%"></div>
+                </div>
+                <small>物理对应度: 75%</small>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 板块2：核心资源 -->
+    <section id="resources" class="content-section" style="background: rgba(0,0,0,0.2);">
+        <h2 class="section-title fade-in">核心资源</h2>
+        
+        <div class="glass-card fade-in" style="max-width: 800px; margin: 0 auto 3rem;">
+            <h3><i class="fas fa-info-circle"></i> 下载说明</h3>
+            <p>所有资源均免费开放。点击"下载"按钮直接下载文件，点击"预览"按钮在线查看（PDF格式）。资源持续更新中。</p>
+        </div>
+        
+        <div class="grid-container">
+            <!-- PDF文件卡片 -->
+            <div class="file-card fade-in delay-1">
+                <div class="file-icon">
+                    <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="file-info">
+                    <h3>几何弦统一理论总纲</h3>
+                    <p>完整理论体系，包含所有核心推导和结论</p>
+                    <div class="file-meta">
+                        <span><i class="fas fa-file-alt"></i> 42页</span>
+                        <span><i class="fas fa-database"></i> 345KB</span>
+                        <span><i class="fas fa-calendar"></i> 2025-01-15</span>
+                    </div>
+                    <div class="file-action">
+                        <a href="papers/几何弦统一理论总纲.pdf" class="btn-download" download="几何弦统一理论总纲.pdf">
+                            <i class="fas fa-download"></i> 下载PDF
+                        </a>
+                        <a href="papers/几何弦统一理论总纲.pdf" class="btn-preview" target="_blank">
+                            <i class="fas fa-eye"></i> 在线预览
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="file-card fade-in delay-2">
+                <div class="file-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="file-info">
+                    <h3>四步学习指南</h3>
+                    <p>从入门到精通的系统学习路径，适合不同背景学习者</p>
+                    <div class="file-meta">
+                        <span><i class="fas fa-file-alt"></i> 35页</span>
+                        <span><i class="fas fa-database"></i> 520KB</span>
+                        <span><i class="fas fa-calendar"></i> 2025-01-25</span>
+                    </div>
+                    <div class="file-action">
+                        <a href="papers/四步学习指南.pdf" class="btn-download" download="四步学习指南.pdf">
+                            <i class="fas fa-download"></i> 下载PDF
+                        </a>
+                        <a href="papers/四步学习指南.pdf" class="btn-preview" target="_blank">
+                            <i class="fas fa-eye"></i> 在线预览
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="file-card fade-in delay-3">
+                <div class="file-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <div class="file-info">
+                    <h3>补丁：几何必然取代数学假设</h3>
+                    <p>关键理论补丁，解释如何从几何推导取代传统假设</p>
+                    <div class="file-meta">
+                        <span><i class="fas fa-file-alt"></i> 28页</span>
+                        <span><i class="fas fa-database"></i> 405KB</span>
+                        <span><i class="fas fa-calendar"></i> 2025-02-05</span>
+                    </div>
+                    <div class="file-action">
+                        <a href="papers/补丁-几何必然取代数学假设.pdf" class="btn-download" download="几何必然性补丁.pdf">
+                            <i class="fas fa-download"></i> 下载PDF
+                        </a>
+                        <a href="papers/补丁-几何必然取代数学假设.pdf" class="btn-preview" target="_blank">
+                            <i class="fas fa-eye"></i> 在线预览
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- PPT文件卡片 -->
+            <div class="file-card fade-in delay-1">
+                <div class="file-icon">
+                    <i class="fas fa-presentation"></i>
+                </div>
+                <div class="file-info">
+                    <h3>五步讲解PPT完整版</h3>
+                    <p>包含所有动画和演讲备注的教学演示文稿</p>
+                    <div class="file-meta">
+                        <span><i class="fas fa-slideshare"></i> 86页</span>
+                        <span><i class="fas fa-database"></i> 5.2MB</span>
+                        <span><i class="fas fa-calendar"></i> 2025-02-10</span>
+                    </div>
+                    <div class="file-action">
+                        <a href="presentations/五步讲解PPT.pptx" class="btn-download" download="几何弦理论演讲PPT.pptx">
+                            <i class="fas fa-download"></i> 下载PPT
+                        </a>
+                        <a href="#" class="btn-preview" onclick="showModal('ppt-preview-modal')">
+                            <i class="fas fa-eye"></i> 查看简介
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="file-card fade-in delay-2">
+                <div class="file-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="file-info">
+                    <h3>演讲逐字稿与教学大纲</h3>
+                    <p>完整的演讲文本和教学安排，适合自学或教学</p>
+                    <div class="file-meta">
+                        <span><i class="fas fa-file-alt"></i> 24页</span>
+                        <span><i class="fas fa-database"></i> 320KB</span>
+                        <span><i class="fas fa-calendar"></i> 2025-02-15</span>
+                    </div>
+                    <div class="file-action">
+                        <a href="presentations/演讲逐字稿.pdf" class="btn-download" download="演讲逐字稿.pdf">
+                            <i class="fas fa-download"></i> 下载文稿
+                        </a>
+                        <a href="presentations/演讲逐字稿.pdf" class="btn-preview" target="_blank">
+                            <i class="fas fa-eye"></i> 在线预览
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="file-card fade-in delay-3">
+                <div class="file-icon">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="file-info">
+                    <h3>人文改革方案</h3>
+                    <p>科研教育体系改革建议，与理论相辅相成</p>
+                    <div class="file-meta">
+                        <span><i class="fas fa-file-alt"></i> 18页</span>
+                        <span><i class="fas fa-database"></i> 280KB</span>
+                        <span><i class="fas fa-calendar"></i> 2025-02-20</span>
+                    </div>
+                    <div class="file-action">
+                        <a href="papers/人文改革方案.pdf" class="btn-download" download="人文改革方案.pdf">
+                            <i class="fas fa-download"></i> 下载PDF
+                        </a>
+                        <a href="papers/人文改革方案.pdf" class="btn-preview" target="_blank">
+                            <i class="fas fa-eye"></i> 在线预览
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="glass-card fade-in" style="margin-top: 3rem; text-align: center;">
+            <h4><i class="fas fa-box"></i> 批量下载</h4>
+            <p>获取完整资源包，包含所有PDF和PPT文件</p>
+            <a href="#" class="download-button" onclick="downloadAllResources()">
+                <i class="fas fa-download"></i>
+                下载完整资源包 (约7MB)
+            </a>
+        </div>
+    </section>
+    
+    <!-- 板块3：开放协作 -->
+    <section id="collaboration" class="content-section">
+        <h2 class="section-title fade-in">🤝 开放协作</h2>
+        
+        <div class="glass-card fade-in" style="max-width: 800px; margin: 0 auto 2rem;">
+            <h3 style="color: var(--primary); margin-bottom: 1rem;">
+                <i class="fas fa-users"></i> 加入我们的思想网络
+            </h3>
+            <p>几何弦理论是一个开放、生长的思想生态系统。我们邀请您以多种方式参与共建：</p>
+        </div>
+        
+        <div class="grid-container">
+            <div class="glass-card fade-in delay-1">
+                <div class="file-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h3>GitHub协作</h3>
+                <p>在GitHub上fork仓库，提交改进建议或指出错误。</p>
+                <a href="https://github.com/你的用户名/geometry-string-map" 
+                   class="cta-button" 
+                   style="padding: 10px 20px; margin-top: 1rem; display: inline-block;"
+                   target="_blank">
+                    前往GitHub仓库
+                </a>
+            </div>
+            
+            <div class="glass-card fade-in delay-2">
+                <div class="file-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>议题讨论</h3>
+                <p>在Issues中提出问题、建议，或参与现有讨论。</p>
+                <a href="https://github.com/你的用户名/geometry-string-map/issues" 
+                   class="cta-button" 
+                   style="padding: 10px 20px; margin-top: 1rem; display: inline-block;"
+                   target="_blank">
+                    查看与提交议题
+                </a>
+            </div>
+            
+            <div class="glass-card fade-in delay-3">
+                <div class="file-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <h3>文档改进</h3>
+                <p>帮助我们完善文档、翻译内容或修正错误。</p>
+                <a href="resources/如何参与贡献.md" 
+                   class="cta-button" 
+                   style="padding: 10px 20px; margin-top: 1rem; display: inline-block;">
+                    查看贡献指南
+                </a>
+            </div>
+        </div>
+        
+        <!-- 开放问题列表 -->
+        <div class="glass-card fade-in" style="margin-top: 3rem;">
+            <h4><i class="fas fa-question-circle"></i> 当前开放问题</h4>
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="padding: 10px 0; border-bottom: 1px solid var(--glass-border);">
+                    <a href="https://github.com/你的用户名/geometry-string-map/issues/1" 
+                       style="color: var(--light); text-decoration: none; display: block;"
+                       target="_blank">
+                        <i class="fas fa-circle" style="color: var(--primary); font-size: 0.8rem;"></i>
+                        如何更好地可视化9维几何？
+                        <span style="float: right; font-size: 0.8rem; opacity: 0.7;">讨论中</span>
+                    </a>
+                </li>
+                <li style="padding: 10px 0; border-bottom: 1px solid var(--glass-border);">
+                    <a href="https://github.com/你的用户名/geometry-string-map/issues/2" 
+                       style="color: var(--light); text-decoration: none; display: block;"
+                       target="_blank">
+                        <i class="fas fa-circle" style="color: var(--accent); font-size: 0.8rem;"></i>
+                        实验验证的优先级排序
+                        <span style="float: right; font-size: 0.8rem; opacity: 0.7;">进行中</span>
+                    </a>
+                </li>
+                <li style="padding: 10px 0;">
+                    <a href="https://github.com/你的用户名/geometry-string-map/issues/3" 
+                       style="color: var(--light); text-decoration: none; display: block;"
+                       target="_blank">
+                        <i class="fas fa-circle" style="color: var(--secondary); font-size: 0.8rem;"></i>
+                        人文改革方案的具体实施步骤
+                        <span style="float: right; font-size: 0.8rem; opacity: 0.7;">新议题</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </section>
+    
+    <!-- 板块4：数据统计 -->
+    <section id="stats" class="content-section" style="background: rgba(0,0,0,0.2);">
+        <h2 class="section-title fade-in">数据统计</h2>
+        
+        <div class="stats-grid">
+            <div class="stat-item fade-in delay-1">
+                <div class="stat-value" id="total-downloads">1,247</div>
+                <div class="stat-label">总下载次数</div>
+            </div>
+            <div class="stat-item fade-in delay-2">
+                <div class="stat-value" id="active-collaborators">42</div>
+                <div class="stat-label">活跃协作者</div>
+            </div>
+            <div class="stat-item fade-in delay-3">
+                <div class="stat-value" id="open-issues">18</div>
+                <div class="stat-label">开放议题</div>
+            </div>
+            <div class="stat-item fade-in delay-4">
+                <div class="stat-value" id="last-update">3天前</div>
+                <div class="stat-label">最近更新</div>
+            </div>
+        </div>
+        
+        <div class="glass-card fade-in" style="margin-top: 3rem;">
+            <h4><i class="fas fa-chart-line"></i> 访问趋势</h4>
+            <p style="margin-bottom: 1rem;">网站流量和资源下载的月度统计：</p>
+            <div style="display: flex; align-items: flex-end; gap: 10px; height: 200px; margin-top: 2rem;">
+                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 40%; border-radius: 5px 5px 0 0;"></div>
+                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 60%; border-radius: 5px 5px 0 0;"></div>
+                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 80%; border-radius: 5px 5px 0 0;"></div>
+                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 100%; border-radius: 5px 5px 0 0;"></div>
+                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 70%; border-radius: 5px 5px 0 0;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
+                <span>1月</span><span>2月</span><span>3月</span><span>4月</span><span>5月</span>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 板块5：发展路线 -->
+    <section id="roadmap" class="content-section">
+        <h2 class="section-title fade-in">发展路线图</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in delay-1">
+                <div class="timeline-date">2025年3月</div>
+                <h3>首次公开演讲</h3>
+                <p>在北京理论物理研究所进行首次完整理论展示，邀请学术界同行评议。同时发布演讲视频和完整PPT。</p>
+            </div>
+            
+            <div class="timeline-item fade-in delay-2">
+                <div class="timeline-date">2025年4-6月</div>
+                <h3>完整论文发布与讨论</h3>
+                <p>在arXiv预印本平台发布完整理论体系，开启同行评审与讨论。完善GitHub协作平台，收集社区反馈。</p>
+            </div>
+            
+            <div class="timeline-item fade-in delay-3">
+                <div class="timeline-date">2025年下半年</div>
+                <h3>实验验证阶段</h3>
+                <p>与实验物理学家合作，设计验证关键预言的实验方案。重点关注2.5TeV共振态和暗物质探测。</p>
+            </div>
+            
+            <div class="timeline-item fade-in delay-4">
+                <div class="timeline-date">2026年</div>
+                <h3>专著出版与教学推广</h3>
+                <p>出版理论专著，开发相关课程材料，推动学术体系改革。建立完整的多媒体教学资源库。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 下载指示器 -->
+    <div class="download-indicator" id="downloadIndicator">
+        <i class="fas fa-spinner fa-spin"></i>
+        <span id="downloadText">正在准备下载...</span>
+    </div>
+    
+    <!-- PPT预览弹窗 -->
+    <div class="modal" id="ppt-preview-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('ppt-preview-modal')">&times;</span>
+            <h3><i class="fas fa-presentation"></i> 五步讲解PPT简介</h3>
+            <p>此PPT包含完整五步讲解体系：</p>
+            <ol style="margin-left: 1.5rem; margin-top: 1rem;">
+                <li><strong>奠基</strong>：理论动机与世界观</li>
+                <li><strong>建构</strong>：数学语言与关键公式</li>
+                <li><strong>涌现</strong>：几何如何生成万物</li>
+                <li><strong>检验</strong>：实验预言与证伪条件</li>
+                <li><strong>人文</strong>：科研教育改革方案</li>
+            </ol>
+            <p style="margin-top: 1rem;"><strong>文件信息：</strong></p>
+            <ul style="margin-left: 1.5rem;">
+                <li>格式：PowerPoint (.pptx)</li>
+                <li>大小：约5.2MB</li>
+                <li>页数：86页（含动画）</li>
+                <li>包含：演讲备注、动画效果、参考文献</li>
+            </ul>
+            <div style="margin-top: 2rem; text-align: center;">
+                <a href="presentations/五步讲解PPT.pptx" class="download-button" download="几何弦理论演讲PPT.pptx">
+                    <i class="fas fa-download"></i> 立即下载PPT
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="logo" style="margin-bottom: 1rem;">GEOMETRIC STRING UNIFICATION</div>
+        <p>一个开放、生长、协作的思想生态系统</p>
+        
+        <div class="social-links">
+            <a href="https://github.com/你的用户名/geometry-string-map" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="#" onclick="showModal('contact-modal')">
+                <i class="fas fa-envelope"></i>
+            </a>
+            <a href="https://arxiv.org" target="_blank">
+                <i class="fas fa-book-open"></i>
+            </a>
+            <a href="#" onclick="showModal('subscribe-modal')">
+                <i class="fas fa-newspaper"></i>
+            </a>
+        </div>
+        
+        <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
+            © 2025 几何弦理论项目 · 采用 <a href="https://creativecommons.org/licenses/by/4.0/" style="color: var(--primary);" target="_blank">CC-BY 4.0</a> 开源协议 · 
+            <span id="live-date">最后更新: 2025年3月1日</span>
+        </p>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script>
+        // 粒子效果配置
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#00ff9d" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#667eea",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+        
+        // 移动端菜单切换
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // 点击导航链接后关闭移动菜单
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // 更新日期
+        function updateDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('live-date').textContent = 
+                '最后更新: ' + now.toLocaleDateString('zh-CN', options);
+            
+            // 更新"最近更新"统计
+            const lastUpdateElement = document.getElementById('last-update');
+            const diffDays = Math.floor((now - new Date(2025, 2, 1)) / (1000 * 60 * 60 * 24));
+            
+            if (diffDays === 0) lastUpdateElement.textContent = '今天';
+            else if (diffDays === 1) lastUpdateElement.textContent = '昨天';
+            else if (diffDays < 7) lastUpdateElement.textContent = `${diffDays}天前`;
+            else if (diffDays < 30) lastUpdateElement.textContent = `${Math.floor(diffDays/7)}周前`;
+            else lastUpdateElement.textContent = `${Math.floor(diffDays/30)}月前`;
+        }
+        
+        // 更新下载统计（模拟数据，实际中可以连接后端）
+        function updateStats() {
+            // 模拟增长
+            const baseDownloads = 1247;
+            const baseCollaborators = 42;
+            const baseIssues = 18;
+            
+            // 添加随机增长
+            const randomGrowth = Math.floor(Math.random() * 10);
+            const newDownloads = baseDownloads + randomGrowth;
+            const newCollaborators = baseCollaborators + (randomGrowth % 3);
+            const newIssues = baseIssues + (randomGrowth % 2);
+            
+            document.getElementById('total-downloads').textContent = newDownloads.toLocaleString();
+            document.getElementById('active-collaborators').textContent = newCollaborators;
+            document.getElementById('open-issues').textContent = newIssues;
+        }
+        
+        // 下载所有资源函数
+        function downloadAllResources() {
+            const indicator = document.getElementById('downloadIndicator');
+            const downloadText = document.getElementById('downloadText');
+            
+            // 显示下载指示器
+            indicator.classList.add('active');
+            downloadText.textContent = '正在准备资源包...';
+            
+            // 模拟下载过程
+            setTimeout(() => {
+                downloadText.textContent = '正在压缩文件...';
+            }, 1000);
+            
+            setTimeout(() => {
+                downloadText.textContent = '正在生成下载链接...';
+            }, 2000);
+            
+            setTimeout(() => {
+                downloadText.textContent = '下载准备完成！';
+                
+                // 创建下载链接
+                const link = document.createElement('a');
+                link.href = '#';
+                link.download = '几何弦理论完整资源包.zip';
+                
+                // 触发下载（实际中这里应该是一个真实的ZIP文件链接）
+                setTimeout(() => {
+                    indicator.classList.remove('active');
+                    alert('批量下载功能需要后端支持。目前请单独下载各个文件。');
+                }, 500);
+            }, 3000);
+        }
+        
+        // 单个文件下载跟踪
+        document.querySelectorAll('.btn-download').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const filename = this.getAttribute('download') || '文件下载';
+                console.log(`开始下载: ${filename}`);
+                
+                // 更新下载统计
+                const downloadCountElement = document.getElementById('total-downloads');
+                let count = parseInt(downloadCountElement.textContent.replace(/,/g, '')) || 0;
+                downloadCountElement.textContent = (count + 1).toLocaleString();
+                
+                // 显示下载提示
+                const indicator = document.getElementById('downloadIndicator');
+                const downloadText = document.getElementById('downloadText');
+                
+                indicator.classList.add('active');
+                downloadText.textContent = `正在下载: ${filename}`;
+                
+                setTimeout(() => {
+                    indicator.classList.remove('active');
+                }, 2000);
+            });
+        });
+        
+        // 弹窗控制
+        function showModal(modalId) {
+            document.getElementById(modalId).style.display = 'flex';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // 点击弹窗外部关闭
+        window.onclick = function(event) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // 滚动动画
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight * 0.85) {
+                    element.style.animationPlayState = 'running';
+                }
+            });
+        }
+        
+        // 初始化
+        window.addEventListener('load', () => {
+            updateDate();
+            updateStats();
+            animateOnScroll();
+            
+            // 初始化滚动动画
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.animationPlayState = 'paused';
+            });
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('resize', animateOnScroll);
+        
+        // 键盘快捷键
+        document.addEventListener('keydown', (e) => {
+            // ESC关闭所有弹窗
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+            }
+            
+            // Ctrl+F搜索
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                alert('搜索功能正在开发中...');
+            }
+        });
+        
+        // 平滑滚动到锚点
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    // 如果是移动端，关闭菜单
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
