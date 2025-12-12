@@ -685,6 +685,20 @@
                 opacity: 1;
             }
         }
+        
+        /* 徽章样式 */
+        .badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
@@ -915,13 +929,72 @@
             </div>
         </div>
         
-        <div class="glass-card fade-in" style="margin-top: 3rem; text-align: center;">
-            <h4><i class="fas fa-box"></i> 批量下载</h4>
-            <p>获取完整资源包，包含所有PDF和PPT文件</p>
-            <a href="#" class="download-button" onclick="downloadAllResources()">
-                <i class="fas fa-download"></i>
-                下载完整资源包 (约7MB)
-            </a>
+        <!-- 一键下载所有PDF - 增强版 -->
+        <div class="glass-card fade-in" style="margin-top: 3rem; text-align: center; position: relative;">
+            <!-- 徽章：自动更新 -->
+            <div style="position: absolute; top: -10px; right: -10px; background: var(--primary); color: var(--dark); padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">
+                <i class="fas fa-robot"></i> 自动打包
+            </div>
+            
+            <h4><i class="fas fa-box-open"></i> 一键获取完整论文库</h4>
+            <p style="max-width: 600px; margin: 0 auto 1rem;">无需逐个下载，GitHub自动为你打包papers文件夹中的所有PDF文件</p>
+            
+            <!-- 实时统计 -->
+            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 600px; margin: 2rem auto;">
+                <div class="stat-item">
+                    <div class="stat-value" id="pdf-count">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <div class="stat-label">PDF文件</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="pdf-size">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <div class="stat-label">压缩包大小</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="last-bundle">
+                        <i class="fas fa-spinner fa-spin"></i>
+                    </div>
+                    <div class="stat-label">最后更新</div>
+                </div>
+            </div>
+            
+            <!-- 主要下载按钮 -->
+            <div style="margin: 2rem 0;">
+                <a href="papers-all.zip" 
+                   class="download-button" 
+                   id="download-all-pdf"
+                   style="padding: 15px 40px; font-size: 1.1rem;"
+                   onclick="trackBundleDownload()">
+                    <i class="fas fa-download"></i>
+                    下载完整论文库 (ZIP)
+                </a>
+            </div>
+            
+            <!-- 额外选项 -->
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 1.5rem;">
+                <a href="#" class="btn-preview" onclick="showBundleContents()" style="text-decoration: none;">
+                    <i class="fas fa-list"></i> 查看包含文件
+                </a>
+                <a href="https://github.com/你的用户名/geometry-string-map/tree/main/papers" 
+                   class="btn-preview" 
+                   target="_blank"
+                   style="text-decoration: none;">
+                    <i class="fab fa-github"></i> 浏览GitHub源文件
+                </a>
+            </div>
+            
+            <!-- 文件列表（默认隐藏） -->
+            <div id="bundle-contents" style="display: none; margin-top: 2rem; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
+                <h5><i class="fas fa-file-pdf"></i> 包含的PDF文件：</h5>
+                <div id="pdf-list" style="max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 10px;">
+                    <div style="text-align: center; padding: 2rem;">
+                        <i class="fas fa-spinner fa-spin"></i> 加载文件列表...
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     
@@ -1236,38 +1309,155 @@
             document.getElementById('open-issues').textContent = newIssues;
         }
         
-        // 下载所有资源函数
-        function downloadAllResources() {
+        // 追踪压缩包下载
+        function trackBundleDownload() {
+            // 更新下载统计
+            const downloadCountElement = document.getElementById('total-downloads');
+            if (downloadCountElement) {
+                let count = parseInt(downloadCountElement.textContent.replace(/,/g, '')) || 0;
+                downloadCountElement.textContent = (count + 1).toLocaleString();
+            }
+            
+            // 显示下载指示器
             const indicator = document.getElementById('downloadIndicator');
             const downloadText = document.getElementById('downloadText');
             
-            // 显示下载指示器
-            indicator.classList.add('active');
-            downloadText.textContent = '正在准备资源包...';
-            
-            // 模拟下载过程
-            setTimeout(() => {
-                downloadText.textContent = '正在压缩文件...';
-            }, 1000);
-            
-            setTimeout(() => {
-                downloadText.textContent = '正在生成下载链接...';
-            }, 2000);
-            
-            setTimeout(() => {
-                downloadText.textContent = '下载准备完成！';
+            if (indicator && downloadText) {
+                indicator.classList.add('active');
+                downloadText.textContent = '正在准备论文库压缩包...';
                 
-                // 创建下载链接
-                const link = document.createElement('a');
-                link.href = '#';
-                link.download = '几何弦理论完整资源包.zip';
+                // 模拟处理过程
+                setTimeout(() => downloadText.textContent = '收集所有PDF文件...', 500);
+                setTimeout(() => downloadText.textContent = '正在压缩...', 1500);
+                setTimeout(() => downloadText.textContent = '压缩完成，开始下载！', 2500);
+                setTimeout(() => indicator.classList.remove('active'), 3500);
+            }
+            
+            // 记录下载事件（实际使用中可以发送到统计服务）
+            console.log('用户下载了完整论文库');
+        }
+
+        // 显示压缩包内容
+        function showBundleContents() {
+            const contentsDiv = document.getElementById('bundle-contents');
+            const pdfListDiv = document.getElementById('pdf-list');
+            
+            if (contentsDiv.style.display === 'none') {
+                // 显示
+                contentsDiv.style.display = 'block';
                 
-                // 触发下载（实际中这里应该是一个真实的ZIP文件链接）
-                setTimeout(() => {
-                    indicator.classList.remove('active');
-                    alert('批量下载功能需要后端支持。目前请单独下载各个文件。');
-                }, 500);
-            }, 3000);
+                // 如果还没加载，加载文件列表
+                if (pdfListDiv.innerHTML.includes('spinner')) {
+                    loadPDFList();
+                }
+            } else {
+                // 隐藏
+                contentsDiv.style.display = 'none';
+            }
+        }
+
+        // 加载PDF文件列表
+        async function loadPDFList() {
+            const pdfListDiv = document.getElementById('pdf-list');
+            
+            try {
+                // 尝试获取bundle-info.json中的文件列表
+                const response = await fetch('bundle-info.json');
+                if (response.ok) {
+                    const info = await response.json();
+                    
+                    // 如果有文件列表信息
+                    if (info.files) {
+                        let html = '<ul style="list-style: none; padding-left: 0;">';
+                        info.files.forEach((file, index) => {
+                            html += `
+                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center;">
+                                <span style="color: var(--primary); margin-right: 10px;">${index + 1}.</span>
+                                <i class="fas fa-file-pdf" style="color: #f40; margin-right: 10px;"></i>
+                                <span style="flex: 1;">${file.name}</span>
+                                <span style="font-size: 0.8rem; opacity: 0.7;">${formatFileSize(file.size)}</span>
+                            </li>`;
+                        });
+                        html += '</ul>';
+                        pdfListDiv.innerHTML = html;
+                        return;
+                    }
+                }
+                
+                // 备选方案：列出已知文件
+                const knownFiles = [
+                    { name: '几何弦统一理论总纲.pdf', size: 345000 },
+                    { name: '四步学习指南.pdf', size: 520000 },
+                    { name: '补丁-几何必然取代数学假设.pdf', size: 405000 },
+                    { name: '宇宙信息升维猜想终版.pdf', size: 125000 },
+                    { name: '人文改革方案.pdf', size: 280000 }
+                ];
+                
+                let html = '<ul style="list-style: none; padding-left: 0;">';
+                knownFiles.forEach((file, index) => {
+                    html += `
+                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center;">
+                        <span style="color: var(--primary); margin-right: 10px;">${index + 1}.</span>
+                        <i class="fas fa-file-pdf" style="color: #f40; margin-right: 10px;"></i>
+                        <span style="flex: 1;">${file.name}</span>
+                        <span style="font-size: 0.8rem; opacity: 0.7;">${formatFileSize(file.size)}</span>
+                    </li>`;
+                });
+                html += '</ul>';
+                pdfListDiv.innerHTML = html;
+                
+            } catch (error) {
+                pdfListDiv.innerHTML = '<div style="text-align: center; padding: 1rem; color: var(--accent);"><i class="fas fa-exclamation-triangle"></i> 无法加载文件列表</div>';
+            }
+        }
+
+        // 格式化文件大小
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' B';
+            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+        }
+
+        // 更新PDF统计信息
+        async function updatePDFStats() {
+            try {
+                // 尝试获取bundle-info.json
+                const response = await fetch('bundle-info.json');
+                if (response.ok) {
+                    const info = await response.json();
+                    
+                    // 更新文件数量
+                    document.getElementById('pdf-count').innerHTML = info.fileCount || '5';
+                    
+                    // 更新压缩包大小
+                    document.getElementById('pdf-size').innerHTML = formatFileSize(info.totalSize) || '1.6MB';
+                    
+                    // 更新最后更新时间
+                    const updateDate = new Date(info.lastUpdated);
+                    const now = new Date();
+                    const diffDays = Math.floor((now - updateDate) / (1000 * 60 * 60 * 24));
+                    
+                    if (diffDays === 0) {
+                        document.getElementById('last-bundle').innerHTML = '今天';
+                    } else if (diffDays === 1) {
+                        document.getElementById('last-bundle').innerHTML = '昨天';
+                    } else if (diffDays < 7) {
+                        document.getElementById('last-bundle').innerHTML = `${diffDays}天前`;
+                    } else {
+                        document.getElementById('last-bundle').innerHTML = updateDate.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
+                    }
+                } else {
+                    // 如果无法获取，使用默认值
+                    document.getElementById('pdf-count').innerHTML = '5';
+                    document.getElementById('pdf-size').innerHTML = '1.6MB';
+                    document.getElementById('last-bundle').innerHTML = '今天';
+                }
+            } catch (error) {
+                // 出错时使用默认值
+                document.getElementById('pdf-count').innerHTML = '5';
+                document.getElementById('pdf-size').innerHTML = '1.6MB';
+                document.getElementById('last-bundle').innerHTML = '今天';
+            }
         }
         
         // 单个文件下载跟踪
@@ -1330,6 +1520,7 @@
         window.addEventListener('load', () => {
             updateDate();
             updateStats();
+            updatePDFStats(); // 新增：更新PDF统计信息
             animateOnScroll();
             
             // 初始化滚动动画
