@@ -728,54 +728,200 @@
             font-size: 1.2rem;
             width: 30px;
         }
+        
+        /* 链接工具栏样式 */
+        #link-bar {
+            position: fixed;
+            left: 20px;
+            top: 100px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            width: 250px;
+            max-height: 80vh;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        #link-bar:hover {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .link-bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        
+        .link-bar-header span {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+        
+        #toggle-edit-btn {
+            background: rgba(0, 255, 157, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            border-radius: 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        #toggle-edit-btn:hover {
+            background: rgba(0, 255, 157, 0.2);
+        }
+        
+        .links-container {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .links-container a {
+            display: block;
+            padding: 8px 10px;
+            margin: 5px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            color: var(--light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .links-container a:hover {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--primary);
+            transform: translateX(5px);
+        }
+        
+        .edit-container {
+            margin-top: 1rem;
+        }
+        
+        #links-input {
+            width: 100%;
+            height: 150px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            padding: 10px;
+            color: var(--light);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            resize: vertical;
+        }
+        
+        .edit-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .edit-actions button {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        #save-links-btn {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        #save-links-btn:hover {
+            background: rgba(0, 255, 157, 0.2);
+        }
+        
+        #cancel-edit-btn {
+            background: rgba(255, 107, 157, 0.1);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+        
+        #cancel-edit-btn:hover {
+            background: rgba(255, 107, 157, 0.2);
+        }
+        
+        #reset-links-btn {
+            background: rgba(102, 126, 234, 0.1);
+            color: var(--secondary);
+            border: 1px solid var(--secondary);
+        }
+        
+        #reset-links-btn:hover {
+            background: rgba(102, 126, 234, 0.2);
+        }
+        
+        /* 移动端链接工具栏适配 */
+        @media (max-width: 1024px) {
+            #link-bar {
+                left: 10px;
+                width: 220px;
+                top: 90px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #link-bar {
+                position: relative;
+                left: 0;
+                top: 0;
+                width: 100%;
+                margin: 1rem auto;
+                max-width: 600px;
+                max-height: none;
+                border-radius: 10px;
+            }
+            
+            .hero-section {
+                padding-top: 80px;
+            }
+        }
     </style>
 </head>
 <body>
     <!-- ===== 可编辑链接工具栏 ===== -->
-<div id="link-bar">
-    <!-- 工具栏头部：显示和编辑切换 -->
-    <div class="link-bar-header">
-        <span>🔗 快捷链接</span>
-        <button id="toggle-edit-btn" title="编辑链接">✎</button>
-    </div>
-    
-    <!-- 链接展示区 -->
-    <div class="links-container" id="links-display">
-        <!-- 链接会在这里动态生成 -->
-    </div>
-    
-    <!-- 链接编辑区 (默认隐藏) -->
-    <div class="edit-container" id="links-edit" style="display: none;">
-        <textarea id="links-input" placeholder="在这里添加或编辑链接，格式为：
+    <div id="link-bar">
+        <!-- 工具栏头部：显示和编辑切换 -->
+        <div class="link-bar-header">
+            <span>🔗 快捷链接</span>
+            <button id="toggle-edit-btn" title="编辑链接">✎</button>
+        </div>
+        
+        <!-- 链接展示区 -->
+        <div class="links-container" id="links-display">
+            <!-- 链接会在这里动态生成 -->
+        </div>
+        
+        <!-- 链接编辑区 (默认隐藏) -->
+        <div class="edit-container" id="links-edit" style="display: none;">
+            <textarea id="links-input" placeholder="在这里添加或编辑链接，格式为：
 名称1 | https://example.com
 名称2 | https://another.com
 每条链接占一行，名称和网址用“ | ”分隔。"></textarea>
-        <div class="edit-actions">
-            <button id="save-links-btn">💾 保存</button>
-            <button id="cancel-edit-btn">❌ 取消</button>
-            <button id="reset-links-btn" title="恢复默认">🔄 重置</button>
+            <div class="edit-actions">
+                <button id="save-links-btn">💾 保存</button>
+                <button id="cancel-edit-btn">❌ 取消</button>
+                <button id="reset-links-btn" title="恢复默认">🔄 重置</button>
+            </div>
         </div>
     </div>
-</div>
-
-<script>
-    // 链接工具栏的核心逻辑
-    (function() {
-        // 存储键和默认链接
-        const STORAGE_KEY = 'yohayi_quick_links';
-        const DEFAULT_LINKS = [
-            { name: '几何字符串映射', url: 'https://github.com/yohayi/geometry-string-map' },
-            { name: '研究项目集', url: 'https://github.com/yohayi/2025-2026-' },
-            { name: 'B站主页', url: 'https://space.bilibili.com/1998115340' }
-            { name: ' 信技化生-技术交流网站', url: 'https://yohayi.github.io/-history/' },
-{ name: '“惊鸿斋”官方网站', url: 'https://yohayi.github.io/jinghongzhai--/' },
-{ name: '杭州市教育总结', url: 'https://yohayi.github.io/my-personal-edu-website/' },
-{ name: '教育数据与交流网站', url: 'https://yohayi.github.io/2026--/index.html' },
-{ name: '几何弦理论课后交流-网站', url: 'https://yohayi.github.io/geometry-string-map/' },
-{ name: 'BDCG游戏技术与美术素材网站', url: 'https://yohayi.github.io/BDCG---/' },
-{ name: '游海洋个人网站', url: 'https://yohayi.github.io/yohayi-/' },
-        ];
-        
+    
     <!-- 粒子背景 -->
     <div id="particles-js"></div>
     
@@ -876,7 +1022,6 @@
                         <span><i class="fas fa-calendar"></i> 2025-01-15</span>
                     </div>
                     <div class="file-action">
-                        <!-- 更新文件路径 -->
                         <a href="papers/几何弦统一理论总纲.pdf" class="btn-download" download="几何弦统一理论总纲.pdf">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
@@ -900,7 +1045,6 @@
                         <span><i class="fas fa-calendar"></i> 2025-01-25</span>
                     </div>
                     <div class="file-action">
-                        <!-- 更新文件路径 -->
                         <a href="papers/四步学习指南.pdf" class="btn-download" download="四步学习指南.pdf">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
@@ -924,7 +1068,6 @@
                         <span><i class="fas fa-calendar"></i> 2025-02-05</span>
                     </div>
                     <div class="file-action">
-                        <!-- 更新文件路径 -->
                         <a href="papers/补丁-几何必然取代数学假设.pdf" class="btn-download" download="几何必然性补丁.pdf">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
@@ -949,7 +1092,6 @@
                         <span><i class="fas fa-calendar"></i> 2025-02-10</span>
                     </div>
                     <div class="file-action">
-                        <!-- 更新文件路径 -->
                         <a href="papers/五步讲解PPT完整版.pptx" class="btn-download" download="几何弦理论演讲PPT.pptx">
                             <i class="fas fa-download"></i> 下载PPT
                         </a>
@@ -973,7 +1115,6 @@
                         <span><i class="fas fa-calendar"></i> 2025-02-15</span>
                     </div>
                     <div class="file-action">
-                        <!-- 更新文件路径 -->
                         <a href="papers/演讲逐字稿与教学大纲.pdf" class="btn-download" download="演讲逐字稿.pdf">
                             <i class="fas fa-download"></i> 下载文稿
                         </a>
@@ -997,7 +1138,6 @@
                         <span><i class="fas fa-calendar"></i> 2025-02-20</span>
                     </div>
                     <div class="file-action">
-                        <!-- 更新文件路径 -->
                         <a href="papers/人文改革方案.pdf" class="btn-download" download="人文改革方案.pdf">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
@@ -1043,7 +1183,6 @@
             
             <!-- 主要下载按钮 -->
             <div style="margin: 2rem 0;">
-                <!-- 更新ZIP文件路径 -->
                 <a href="papers/papers-all.zip" 
                    class="download-button" 
                    id="download-all-pdf"
@@ -1265,7 +1404,6 @@
                 <li>包含：演讲备注、动画效果、参考文献</li>
             </ul>
             <div style="margin-top: 2rem; text-align: center;">
-                <!-- 更新文件路径 -->
                 <a href="papers/五步讲解PPT完整版.pptx" class="download-button" download="几何弦理论演讲PPT.pptx">
                     <i class="fas fa-download"></i> 立即下载PPT
                 </a>
@@ -1395,90 +1533,91 @@
                 <a href="tel:+8613377886896" style="color: var(--primary);">+86 133 7788 6896</a>
             </p>
         </div>
+        
         <!-- 添加在页脚的联系信息下面 -->
-<div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(102, 126, 234, 0.1); border-radius: 10px; max-width: 800px; margin-left: auto; margin-right: auto;">
-    <h4 style="color: var(--secondary); margin-bottom: 1rem;">
-        <i class="fab fa-github"></i> GitHub 源仓库
-    </h4>
-    
-    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-        <div style="flex: 1;">
-            <h5 style="margin-bottom: 0.5rem;">
+        <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(102, 126, 234, 0.1); border-radius: 10px; max-width: 800px; margin-left: auto; margin-right: auto;">
+            <h4 style="color: var(--secondary); margin-bottom: 1rem;">
+                <i class="fab fa-github"></i> GitHub 源仓库
+            </h4>
+            
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+                <div style="flex: 1;">
+                    <h5 style="margin-bottom: 0.5rem;">
+                        <a href="https://github.com/yohayi/geometry-string-map" 
+                           target="_blank" 
+                           style="color: var(--light); text-decoration: none;">
+                            yohayi/geometry-string-map
+                        </a>
+                    </h5>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem;">
+                        包含所有原始文件、文档和源代码
+                    </p>
+                    <div style="display: flex; gap: 1rem; font-size: 0.85rem; opacity: 0.8;">
+                        <span><i class="fas fa-code-branch"></i> 主分支</span>
+                        <span><i class="fas fa-folder"></i> 完整结构</span>
+                        <span><i class="fas fa-history"></i> 持续更新</span>
+                    </div>
+                </div>
+                
                 <a href="https://github.com/yohayi/geometry-string-map" 
                    target="_blank" 
-                   style="color: var(--light); text-decoration: none;">
-                    yohayi/geometry-string-map
+                   class="cta-button" 
+                   style="padding: 10px 25px; white-space: nowrap;">
+                    <i class="fab fa-github"></i> 浏览仓库
                 </a>
-            </h5>
-            <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem;">
-                包含所有原始文件、文档和源代码
-            </p>
-            <div style="display: flex; gap: 1rem; font-size: 0.85rem; opacity: 0.8;">
-                <span><i class="fas fa-code-branch"></i> 主分支</span>
-                <span><i class="fas fa-folder"></i> 完整结构</span>
-                <span><i class="fas fa-history"></i> 持续更新</span>
+            </div>
+            
+            <!-- 仓库结构概览 -->
+            <div style="margin-top: 1.5rem;">
+                <h6 style="margin-bottom: 0.5rem; color: var(--primary);">
+                    <i class="fas fa-folder-tree"></i> 主要目录结构
+                </h6>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem; font-size: 0.85rem;">
+                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
+                        <i class="fas fa-folder" style="color: var(--warning);"></i>
+                        <span>papers/</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
+                        <i class="fas fa-folder" style="color: var(--warning);"></i>
+                        <span>docs/</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
+                        <i class="fas fa-folder" style="color: var(--warning);"></i>
+                        <span>assets/</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
+                        <i class="fas fa-folder" style="color: var(--warning);"></i>
+                        <span>code/</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
+                        <i class="fas fa-file-alt" style="color: var(--info);"></i>
+                        <span>README.md</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
+                        <i class="fas fa-file-alt" style="color: var(--info);"></i>
+                        <span>CONTRIBUTING.md</span>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="https://github.com/yohayi/geometry-string-map/tree/main/papers" 
+                       target="_blank" 
+                       style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
+                        <i class="fas fa-external-link-alt"></i> 查看完整论文文件
+                    </a>
+                    <a href="https://github.com/yohayi/geometry-string-map/tree/main/code" 
+                       target="_blank" 
+                       style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
+                        <i class="fas fa-external-link-alt"></i> 查看代码实现
+                    </a>
+                    <a href="https://github.com/yohayi/geometry-string-map/blob/main/README.md" 
+                       target="_blank" 
+                       style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
+                        <i class="fas fa-external-link-alt"></i> 查看项目说明
+                    </a>
+                </div>
             </div>
         </div>
-        
-        <a href="https://github.com/yohayi/geometry-string-map" 
-           target="_blank" 
-           class="cta-button" 
-           style="padding: 10px 25px; white-space: nowrap;">
-            <i class="fab fa-github"></i> 浏览仓库
-        </a>
-    </div>
-    
-    <!-- 仓库结构概览 -->
-    <div style="margin-top: 1.5rem;">
-        <h6 style="margin-bottom: 0.5rem; color: var(--primary);">
-            <i class="fas fa-folder-tree"></i> 主要目录结构
-        </h6>
-        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem; font-size: 0.85rem;">
-            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                <i class="fas fa-folder" style="color: var(--warning);"></i>
-                <span>papers/</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                <i class="fas fa-folder" style="color: var(--warning);"></i>
-                <span>docs/</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                <i class="fas fa-folder" style="color: var(--warning);"></i>
-                <span>assets/</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                <i class="fas fa-folder" style="color: var(--warning);"></i>
-                <span>code/</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                <i class="fas fa-file-alt" style="color: var(--info);"></i>
-                <span>README.md</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                <i class="fas fa-file-alt" style="color: var(--info);"></i>
-                <span>CONTRIBUTING.md</span>
-            </div>
-        </div>
-        
-        <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-            <a href="https://github.com/yohayi/geometry-string-map/tree/main/papers" 
-               target="_blank" 
-               style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
-                <i class="fas fa-external-link-alt"></i> 查看完整论文文件
-            </a>
-            <a href="https://github.com/yohayi/geometry-string-map/tree/main/code" 
-               target="_blank" 
-               style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
-                <i class="fas fa-external-link-alt"></i> 查看代码实现
-            </a>
-            <a href="https://github.com/yohayi/geometry-string-map/blob/main/README.md" 
-               target="_blank" 
-               style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
-                <i class="fas fa-external-link-alt"></i> 查看项目说明
-            </a>
-        </div>
-    </div>
-</div>
         
         <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
             © 2025 几何弦理论项目 · 采用 <a href="https://creativecommons.org/licenses/by/4.0/" style="color: var(--primary);" target="_blank">CC-BY 4.0</a> 开源协议 · 
@@ -1488,6 +1627,174 @@
     
     <!-- JavaScript -->
     <script>
+        // 链接工具栏的核心逻辑
+        (function() {
+            // 存储键和默认链接
+            const STORAGE_KEY = 'yohayi_quick_links';
+            const DEFAULT_LINKS = [
+                { name: '几何字符串映射', url: 'https://github.com/yohayi/geometry-string-map' },
+                { name: '研究项目集', url: 'https://github.com/yohayi/2025-2026-' },
+                { name: 'B站主页', url: 'https://space.bilibili.com/1998115340' },
+                { name: '信技化生-技术交流网站', url: 'https://yohayi.github.io/-history/' },
+                { name: '"惊鸿斋"官方网站', url: 'https://yohayi.github.io/jinghongzhai--/' },
+                { name: '杭州市教育总结', url: 'https://yohayi.github.io/my-personal-edu-website/' },
+                { name: '教育数据与交流网站', url: 'https://yohayi.github.io/2026--/index.html' },
+                { name: '几何弦理论课后交流-网站', url: 'https://yohayi.github.io/geometry-string-map/' },
+                { name: 'BDCG游戏技术与美术素材网站', url: 'https://yohayi.github.io/BDCG---/' },
+                { name: '游海洋个人网站', url: 'https://yohayi.github.io/yohayi-/' }
+            ];
+            
+            // 获取元素
+            const linksDisplay = document.getElementById('links-display');
+            const linksEdit = document.getElementById('links-edit');
+            const linksInput = document.getElementById('links-input');
+            const toggleEditBtn = document.getElementById('toggle-edit-btn');
+            const saveLinksBtn = document.getElementById('save-links-btn');
+            const cancelEditBtn = document.getElementById('cancel-edit-btn');
+            const resetLinksBtn = document.getElementById('reset-links-btn');
+            
+            // 加载链接
+            function loadLinks() {
+                const storedLinks = localStorage.getItem(STORAGE_KEY);
+                let links;
+                
+                if (storedLinks) {
+                    links = JSON.parse(storedLinks);
+                } else {
+                    links = DEFAULT_LINKS;
+                    saveLinks(links);
+                }
+                
+                renderLinks(links);
+                return links;
+            }
+            
+            // 保存链接
+            function saveLinks(links) {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+            }
+            
+            // 渲染链接
+            function renderLinks(links) {
+                linksDisplay.innerHTML = '';
+                
+                links.forEach(link => {
+                    const linkElement = document.createElement('a');
+                    linkElement.href = link.url;
+                    linkElement.target = '_blank';
+                    linkElement.rel = 'noopener noreferrer';
+                    linkElement.textContent = link.name;
+                    linksDisplay.appendChild(linkElement);
+                });
+                
+                // 更新文本区域
+                linksInput.value = links.map(link => `${link.name} | ${link.url}`).join('\n');
+            }
+            
+            // 切换编辑模式
+            function toggleEditMode() {
+                const isEditing = linksEdit.style.display !== 'none';
+                
+                if (isEditing) {
+                    linksEdit.style.display = 'none';
+                    toggleEditBtn.innerHTML = '✎';
+                    toggleEditBtn.title = '编辑链接';
+                } else {
+                    linksEdit.style.display = 'block';
+                    toggleEditBtn.innerHTML = '✕';
+                    toggleEditBtn.title = '取消编辑';
+                    
+                    // 加载当前链接到文本区域
+                    const links = JSON.parse(localStorage.getItem(STORAGE_KEY) || JSON.stringify(DEFAULT_LINKS));
+                    linksInput.value = links.map(link => `${link.name} | ${link.url}`).join('\n');
+                }
+            }
+            
+            // 解析文本区域内容
+            function parseLinksText(text) {
+                const lines = text.split('\n').filter(line => line.trim() !== '');
+                const links = [];
+                
+                for (const line of lines) {
+                    const parts = line.split('|').map(part => part.trim());
+                    
+                    if (parts.length >= 2) {
+                        const name = parts[0];
+                        const url = parts.slice(1).join('|').trim(); // 处理URL中可能包含的|符号
+                        
+                        // 确保URL有协议
+                        const fullUrl = url.startsWith('http') ? url : `https://${url}`;
+                        
+                        links.push({ name, url: fullUrl });
+                    }
+                }
+                
+                return links;
+            }
+            
+            // 保存链接事件
+            saveLinksBtn.addEventListener('click', () => {
+                const linksText = linksInput.value;
+                const links = parseLinksText(linksText);
+                
+                if (links.length > 0) {
+                    saveLinks(links);
+                    renderLinks(links);
+                    toggleEditMode();
+                    
+                    // 显示成功消息
+                    showNotification('链接已保存！', 'success');
+                } else {
+                    showNotification('请输入有效的链接格式', 'error');
+                }
+            });
+            
+            // 取消编辑事件
+            cancelEditBtn.addEventListener('click', toggleEditMode);
+            
+            // 重置链接事件
+            resetLinksBtn.addEventListener('click', () => {
+                if (confirm('确定要恢复默认链接吗？这将覆盖您当前的设置。')) {
+                    saveLinks(DEFAULT_LINKS);
+                    renderLinks(DEFAULT_LINKS);
+                    
+                    if (linksEdit.style.display !== 'none') {
+                        toggleEditMode();
+                    }
+                    
+                    showNotification('已恢复默认链接', 'info');
+                }
+            });
+            
+            // 切换编辑模式事件
+            toggleEditBtn.addEventListener('click', toggleEditMode);
+            
+            // 显示通知
+            function showNotification(message, type = 'info') {
+                const colors = {
+                    success: '#00ff9d',
+                    error: '#ff6b9d',
+                    info: '#667eea'
+                };
+                
+                const indicator = document.getElementById('downloadIndicator');
+                const downloadText = document.getElementById('downloadText');
+                
+                if (indicator && downloadText) {
+                    indicator.style.borderColor = colors[type] || colors.info;
+                    downloadText.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation' : 'info'}-circle"></i> ${message}`;
+                    indicator.classList.add('active');
+                    
+                    setTimeout(() => {
+                        indicator.classList.remove('active');
+                    }, 2000);
+                }
+            }
+            
+            // 初始化
+            loadLinks();
+        })();
+        
         // 粒子效果配置
         particlesJS("particles-js", {
             particles: {
