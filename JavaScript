@@ -1,0 +1,65 @@
+// 获取bundle信息
+async function getBundleInfo() {
+    try {
+        const response = await fetch('bundle-info.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return await response.json();
+    } catch (error) {
+        console.error('无法加载bundle信息:', error);
+        return null;
+    }
+}
+
+// 更新网站统计信息
+async function updateBundleStats() {
+    const info = await getBundleInfo();
+    if (!info) return;
+    
+    // 更新下载统计
+    document.getElementById('total-downloads').textContent = 
+        info.statistics.totalDownloads.toLocaleString();
+    document.getElementById('pdf-downloads').textContent = 
+        info.statistics.pdfDownloads.toLocaleString();
+    document.getElementById('word-downloads').textContent = 
+        info.statistics.wordDownloads.toLocaleString();
+    document.getElementById('last-7days').textContent = 
+        info.statistics.last7DaysDownloads.toLocaleString();
+    
+    // 更新文件列表
+    updateFileList(info);
+}
+
+// 更新文件列表显示
+function updateFileList(info) {
+    const pdfPackage = info.packages.find(pkg => pkg.id === 'pdf-bundle-v1.0');
+    const wordPackage = info.packages.find(pkg => pkg.id === 'word-bundle-v1.0');
+    
+    if (pdfPackage) {
+        // 更新PDF文件数量
+        document.getElementById('pdf-count').textContent = pdfPackage.fileCount;
+        document.getElementById('pdf-size').textContent = pdfPackage.totalSizeFormatted;
+        
+        // 更新最后更新时间
+        const updateDate = new Date(pdfPackage.date || info.bundle.lastUpdated);
+        document.getElementById('last-bundle').textContent = 
+            formatRelativeDate(updateDate);
+    }
+}
+
+// 格式化相对日期
+function formatRelativeDate(date) {
+    const now = new Date();
+    const diffTime = Math.abs(now - date);
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    
+    if (diffDays === 0) return '今天';
+    if (diffDays === 1) return '昨天';
+    if (diffDays < 7) return `${diffDays}天前`;
+    if (diffDays < 30) return `${Math.floor(diffDays/7)}周前`;
+    return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
+}
+
+// 在页面加载时调用
+window.addEventListener('load', updateBundleStats);
