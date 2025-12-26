@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Geometry String Bundle Info Schema",
+  "description": "Schema for validating bundle information files",
+  "type": "object",
+  "required": ["bundle", "packages", "statistics"],
+  "properties": {
+    "bundle": {
+      "type": "object",
+      "required": ["id", "name", "version", "releaseDate"],
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "version": {"type": "string"},
+        "releaseDate": {"type": "string", "format": "date"}
+      }
+    },
+    "packages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "filename", "size", "downloadUrl"]
+      }
+    }
+  }
+}
