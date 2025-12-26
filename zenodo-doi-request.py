@@ -155,4 +155,58 @@ if __name__ == "__main__":
         ],
         "description": """
             几何弦统一理论是一个从几何第一性原理出发的统一理论框架。
-            该理论自然地推导出九维空间结构，并从几何关系中涌现出所有
+            该理论自然地推导出九维空间结构，并从几何关系中涌现出所有基本物理现象。
+            本文档包含了完整的理论推导、数学证明、实验预言和应用分析。
+        """,
+        "upload_type": "publication",
+        "publication_type": "article",
+        "publication_date": datetime.now().strftime("%Y-%m-%d"),
+        "keywords": [
+            "几何弦理论", 
+            "统一理论", 
+            "弦理论", 
+            "理论物理", 
+            "几何物理"
+        ],
+        "notes": "版本 1.0 - 正式发布",
+        "access_right": "open",
+        "license": "cc-by-4.0",
+        "related_identifiers": [
+            {
+                "identifier": "https://github.com/yuanzhichun/geometry-string-map",
+                "relation": "isSupplementTo",
+                "resource_type": "software"
+            }
+        ],
+        "communities": [
+            {"identifier": "theoretical-physics"},
+            {"identifier": "high-energy-physics"}
+        ]
+    }
+    
+    # 文件列表
+    file_paths = [
+        "papers/《几何弦统一理论及其应用体系》 - v1-PDF.zip",
+        "papers/《几何弦统一理论及其时空工程应用体系》-v1-words.zip"
+    ]
+    
+    try:
+        # 使用测试环境（首次测试时使用）
+        zenodo = ZenodoDOI(sandbox=True)
+        
+        # 执行上传和发布
+        result = zenodo.upload_and_publish(metadata, file_paths)
+        
+        # 保存DOI信息
+        with open("zenodo-doi-info.json", "w", encoding="utf-8") as f:
+            json.dump(result, f, indent=2, ensure_ascii=False)
+        
+        print(f"\nDOI信息已保存到: zenodo-doi-info.json")
+        
+    except Exception as e:
+        print(f"错误: {e}")
+        print("\n故障排除:")
+        print("1. 确保设置了 ZENODO_TOKEN 环境变量")
+        print("2. 首次使用请注册 Zenodo 账号并获取API令牌")
+        print("3. 测试环境注册: https://sandbox.zenodo.org")
+        print("4. 正式环境注册: https://zenodo.org")
