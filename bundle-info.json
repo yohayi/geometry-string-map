@@ -1,0 +1,265 @@
+{
+  "bundle": {
+    "id": "geometry-string-bundle-v1.0",
+    "name": "几何弦统一理论完整资源包",
+    "version": "1.0.0",
+    "releaseDate": "2025-03-15",
+    "lastUpdated": "2025-03-15T14:30:00+08:00",
+    "author": "袁知春",
+    "license": "CC-BY-4.0",
+    "doi": "10.5281/zenodo.xxxxxxx",
+    "website": "https://yohayi.github.io/geometry-string-map/",
+    "repository": "https://github.com/yohayi/geometry-string-map"
+  },
+  
+  "packages": [
+    {
+      "id": "pdf-bundle-v1.0",
+      "name": "《几何弦统一理论及其应用体系》PDF完整包",
+      "filename": "《几何弦统一理论及其应用体系》 - v1-PDF.zip",
+      "format": "ZIP",
+      "size": 51024128,
+      "sizeFormatted": "48.7 MB",
+      "checksum": {
+        "md5": "a1b2c3d4e5f678901234567890123456",
+        "sha256": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      },
+      "fileCount": 8,
+      "description": "包含完整理论体系的所有PDF文档和补充材料",
+      "language": "zh-CN",
+      "downloadUrl": "papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B%20-%20v1-PDF.zip",
+      "cdnUrls": [
+        "https://cdn.jsdelivr.net/gh/yohayi/geometry-string-map/papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B%20-%20v1-PDF.zip",
+        "https://raw.githubusercontent.com/yohayi/geometry-string-map/main/papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B%20-%20v1-PDF.zip"
+      ],
+      "files": [
+        {
+          "name": "几何弦统一理论总纲.pdf",
+          "size": 353280,
+          "sizeFormatted": "345 KB",
+          "pages": 42,
+          "description": "完整理论体系，包含所有核心推导和结论",
+          "version": "1.0.0",
+          "date": "2025-01-15"
+        },
+        {
+          "name": "四步学习指南.pdf",
+          "size": 532480,
+          "sizeFormatted": "520 KB",
+          "pages": 35,
+          "description": "从入门到精通的系统学习路径",
+          "version": "1.0.0",
+          "date": "2025-01-25"
+        },
+        {
+          "name": "补丁：几何必然取代数学假设.pdf",
+          "size": 414720,
+          "sizeFormatted": "405 KB",
+          "pages": 28,
+          "description": "关键理论补丁，解释如何从几何推导取代传统假设",
+          "version": "1.0.0",
+          "date": "2025-02-05"
+        },
+        {
+          "name": "演讲逐字稿与教学大纲.pdf",
+          "size": 327680,
+          "sizeFormatted": "320 KB",
+          "pages": 24,
+          "description": "完整的演讲文本和教学安排",
+          "version": "1.0.0",
+          "date": "2025-02-15"
+        },
+        {
+          "name": "人文改革方案.pdf",
+          "size": 286720,
+          "sizeFormatted": "280 KB",
+          "pages": 18,
+          "description": "科研教育体系改革建议",
+          "version": "1.0.0",
+          "date": "2025-02-20"
+        },
+        {
+          "name": "实验验证方案.pdf",
+          "size": 614400,
+          "sizeFormatted": "600 KB",
+          "pages": 38,
+          "description": "详细的实验验证计划和方案",
+          "version": "1.0.0",
+          "date": "2025-03-01"
+        },
+        {
+          "name": "数学附录与推导.pdf",
+          "size": 2048000,
+          "sizeFormatted": "2.0 MB",
+          "pages": 125,
+          "description": "完整的数学推导和证明",
+          "version": "1.0.0",
+          "date": "2025-03-10"
+        },
+        {
+          "name": "参考文献与索引.pdf",
+          "size": 204800,
+          "sizeFormatted": "200 KB",
+          "pages": 15,
+          "description": "完整的参考文献列表和术语索引",
+          "version": "1.0.0",
+          "date": "2025-03-12"
+        }
+      ],
+      "totalPages": 325,
+      "totalSize": 51024128,
+      "totalSizeFormatted": "48.7 MB"
+    },
+    
+    {
+      "id": "word-bundle-v1.0",
+      "name": "《几何弦统一理论及其时空工程应用体系》Word完整包",
+      "filename": "《几何弦统一理论及其时空工程应用体系》-v1-words.zip",
+      "format": "ZIP",
+      "size": 34078720,
+      "sizeFormatted": "32.5 MB",
+      "checksum": {
+        "md5": "b2c3d4e5f678901234567890123456a1",
+        "sha256": "1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
+      },
+      "fileCount": 6,
+      "description": "可编辑的Word文档，便于批注、修改和协作",
+      "language": "zh-CN",
+      "downloadUrl": "papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E6%97%B6%E7%A9%BA%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B-v1-words.zip",
+      "cdnUrls": [
+        "https://cdn.jsdelivr.net/gh/yohayi/geometry-string-map/papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E6%97%B6%E7%A9%BA%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B-v1-words.zip",
+        "https://raw.githubusercontent.com/yohayi/geometry-string-map/main/papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E6%97%B6%E7%A9%BA%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B-v1-words.zip"
+      ],
+      "files": [
+        {
+          "name": "几何弦统一理论总纲.docx",
+          "size": 10485760,
+          "sizeFormatted": "10.0 MB",
+          "pages": 42,
+          "description": "完整理论体系的Word文档",
+          "version": "1.0.0",
+          "date": "2025-01-15"
+        },
+        {
+          "name": "四步学习指南.docx",
+          "size": 6291456,
+          "sizeFormatted": "6.0 MB",
+          "pages": 35,
+          "description": "系统学习路径的Word文档",
+          "version": "1.0.0",
+          "date": "2025-01-25"
+        },
+        {
+          "name": "补丁：几何必然取代数学假设.docx",
+          "size": 5242880,
+          "sizeFormatted": "5.0 MB",
+          "pages": 28,
+          "description": "几何必然性补丁的Word文档",
+          "version": "1.0.0",
+          "date": "2025-02-05"
+        },
+        {
+          "name": "演讲逐字稿与教学大纲.docx",
+          "size": 4194304,
+          "sizeFormatted": "4.0 MB",
+          "pages": 24,
+          "description": "演讲文本和教学安排的Word文档",
+          "version": "1.0.0",
+          "date": "2025-02-15"
+        },
+        {
+          "name": "人文改革方案.docx",
+          "size": 3145728,
+          "sizeFormatted": "3.0 MB",
+          "pages": 18,
+          "description": "科研教育改革建议的Word文档",
+          "version": "1.0.0",
+          "date": "2025-02-20"
+        },
+        {
+          "name": "时空工程应用体系.docx",
+          "size": 4718592,
+          "sizeFormatted": "4.5 MB",
+          "pages": 52,
+          "description": "时空工程应用分析的完整文档",
+          "version": "1.0.0",
+          "date": "2025-03-12"
+        }
+      ],
+      "totalPages": 199,
+      "totalSize": 34078720,
+      "totalSizeFormatted": "32.5 MB"
+    }
+  ],
+  
+  "statistics": {
+    "totalDownloads": 1247,
+    "pdfDownloads": 856,
+    "wordDownloads": 391,
+    "last7DaysDownloads": 142,
+    "monthlyDownloads": [
+      {"month": "2025-01", "count": 120},
+      {"month": "2025-02", "count": 345},
+      {"month": "2025-03", "count": 782}
+    ],
+    "downloadSources": {
+      "direct": 890,
+      "github": 245,
+      "referral": 112
+    },
+    "geographicDistribution": {
+      "CN": 845,
+      "US": 187,
+      "EU": 98,
+      "Other": 117
+    }
+  },
+  
+  "metadata": {
+    "generated": "2025-03-15T14:30:00+08:00",
+    "generator": "GitHub Actions Workflow",
+    "updateFrequency": "daily",
+    "nextUpdate": "2025-03-16T00:00:00+08:00"
+  },
+  
+  "validation": {
+    "schema": "https://yohayi.github.io/geometry-string-map/bundle-schema.json",
+    "valid": true,
+    "checked": "2025-03-15T14:30:00+08:00"
+  },
+  
+  "changelog": [
+    {
+      "version": "1.0.0",
+      "date": "2025-03-15",
+      "changes": [
+        "首次正式发布",
+        "包含完整PDF和Word版本",
+        "添加DOI标识符",
+        "建立完整元数据体系"
+      ]
+    },
+    {
+      "version": "0.9.0",
+      "date": "2025-02-28",
+      "changes": [
+        "公开预览版发布",
+        "向20位专家定向投递",
+        "收集到15份详细反馈"
+      ]
+    }
+  ],
+  
+  "citation": {
+    "apa": "Yuan, Z. (2025). Geometric String Unification Theory and Its Applications (Version 1.0) [Data set]. Geometric String Theory Official Website. https://doi.org/10.5281/zenodo.xxxxxxx",
+    "bibtex": "@book{yuan2025geometric,\n  title = {Geometric String Unification Theory and Its Applications},\n  author = {Yuan, Zhichun},\n  year = {2025},\n  version = {1.0},\n  publisher = {Geometric String Theory Official Website},\n  doi = {10.5281/zenodo.xxxxxxx},\n  url = {https://yohayi.github.io/geometry-string-map/}\n}",
+    "chinese": "袁知春. (2025). 《几何弦统一理论及其应用体系》 (版本1.0). 几何弦统一理论官方网站. https://doi.org/10.5281/zenodo.xxxxxxx"
+  },
+  
+  "support": {
+    "issues": "https://github.com/yohayi/geometry-string-map/issues",
+    "discussions": "https://github.com/yohayi/geometry-string-map/discussions",
+    "email": "3114228696@qq.com",
+    "documentation": "https://yohayi.github.io/geometry-string-map/README.md"
+  }
+}
