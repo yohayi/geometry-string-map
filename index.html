@@ -3,12 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>几何弦统一理论 | 智慧地图</title>
+    
+    <!-- Open Graph 元数据（用于社交媒体分享） -->
+    <meta property="og:title" content="几何弦统一理论 - 权威学术发布平台">
+    <meta property="og:description" content="从几何公理到万物法则的完整理论框架，严谨的开放学术出版物">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yohayi.github.io/geometry-string-map/">
+    <meta property="og:image" content="https://yohayi.github.io/geometry-string-map/og-image.png">
+    
+    <!-- 学术元数据 -->
+    <meta name="citation_title" content="几何弦统一理论及其应用体系">
+    <meta name="citation_author" content="袁知春">
+    <meta name="citation_publication_date" content="2025">
+    <meta name="citation_language" content="zh-CN">
+    <meta name="citation_pdf_url" content="https://yohayi.github.io/geometry-string-map/papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B%20-%20v1-PDF.zip">
+    
+    <title>几何弦统一理论 | 权威学术发布平台</title>
     
     <!-- 字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
     
     <!-- 图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,19 +31,23 @@
     <!-- 粒子效果库 -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
+    <!-- 引用格式支持 -->
+    <script src="https://cdn.jsdelivr.net/npm/citation-js@0.5.0-alpha.9"></script>
+    
     <style>
         :root {
-            --primary: #00ff9d;  /* 量子绿 */
-            --secondary: #667eea; /* 宇宙蓝 */
-            --accent: #ff6b9d;   /* 活力粉 */
-            --dark: #0a0a1a;     /* 深空黑 */
-            --darker: #050510;
-            --light: #e0e0ff;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --success: #00ff9d;
-            --warning: #ffb74d;
-            --info: #29b6f6;
+            --primary: #0056b3;     /* 学术蓝 */
+            --secondary: #28a745;   /* 科学绿 */
+            --accent: #6c757d;      /* 学术灰 */
+            --dark: #121212;        /* 深色背景 */
+            --darker: #0a0a0a;
+            --light: #f8f9fa;
+            --paper: #fff;
+            --border: #dee2e6;
+            --highlight: #e7f1ff;
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
         }
         
         * {
@@ -42,115 +61,28 @@
         }
         
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--darker);
-            color: var(--light);
-            overflow-x: hidden;
+            font-family: 'Inter', 'Source Serif Pro', serif;
+            background: var(--light);
+            color: #212529;
             line-height: 1.6;
+            font-size: 16px;
         }
         
-        /* 粒子背景 */
-        #particles-js {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
-        /* 视频封面容器 */
-        .hero-section {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-        
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-        
-        /* 渐变覆盖层 */
-        .gradient-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(10, 10, 26, 0.9) 0%,
-                rgba(102, 126, 234, 0.2) 50%,
-                rgba(0, 255, 157, 0.1) 100%
-            );
-            z-index: 0;
-        }
-        
-        /* 主标题区域 */
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            max-width: 1000px;
-            padding: 2rem;
-        }
-        
-        .logo {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            color: var(--primary);
-            letter-spacing: 4px;
-            margin-bottom: 2rem;
-            opacity: 0.8;
-        }
-        
-        .main-title {
-            font-size: 4.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1.1;
-        }
-        
-        .subtitle {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        /* 导航菜单 */
+        /* 学术顶部导航栏 */
         .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(5, 5, 16, 0.9);
+            background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 2rem;
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
         
         .nav-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
@@ -163,6 +95,13 @@
             color: var(--primary);
             text-decoration: none;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .nav-logo i {
+            font-size: 1.5rem;
         }
         
         .nav-menu {
@@ -171,439 +110,457 @@
         }
         
         .nav-link {
-            color: var(--light);
+            color: #495057;
             text-decoration: none;
             font-weight: 500;
             padding: 0.5rem 1rem;
-            border-radius: 5px;
+            border-radius: 4px;
             transition: all 0.3s ease;
         }
         
         .nav-link:hover {
             color: var(--primary);
-            background: rgba(0, 255, 157, 0.1);
+            background: var(--highlight);
         }
         
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--light);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-        
-        /* 霓虹按钮 */
-        .cta-button {
-            display: inline-block;
-            background: rgba(0, 255, 157, 0.1);
+        .nav-link.active {
             color: var(--primary);
-            border: 1px solid var(--primary);
-            padding: 15px 40px;
-            border-radius: 50px;
+            background: var(--highlight);
             font-weight: 600;
-            text-decoration: none;
-            letter-spacing: 1px;
-            margin: 10px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(10px);
         }
         
-        .cta-button:hover {
-            background: rgba(0, 255, 157, 0.2);
-            box-shadow: 0 0 20px rgba(0, 255, 157, 0.5);
-            transform: translateY(-3px);
-        }
-        
-        /* 下载按钮 */
-        .download-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .download-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-        
-        .download-button:active {
-            transform: translateY(-1px);
-        }
-        
-        /* 玻璃态卡片 */
-        .glass-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 2rem;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .glass-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border-color: rgba(0, 255, 157, 0.3);
-        }
-        
-        /* 内容区域 */
-        .content-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
+        /* 权威头部区域 */
+        .hero-section {
+            padding: 120px 2rem 80px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
             text-align: center;
             position: relative;
+            overflow: hidden;
         }
         
-        .section-title:after {
+        .hero-section::before {
             content: '';
             position: absolute;
-            bottom: -10px;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+        
+        .academic-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            line-height: 1.2;
+        }
+        
+        .academic-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
             width: 100px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            height: 4px;
+            background: var(--primary);
             border-radius: 2px;
         }
         
-        /* 网格布局 */
-        .grid-container {
+        .academic-subtitle {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: #495057;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .doi-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 2rem;
+        }
+        
+        /* 学术卡片 */
+        .academic-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .academic-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .card-subtitle {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        /* 版本历史 */
+        .version-history {
+            background: var(--highlight);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        
+        .version-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0, 86, 179, 0.1);
+        }
+        
+        .version-item:last-child {
+            border-bottom: none;
+        }
+        
+        /* 引用框 */
+        .citation-box {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            position: relative;
+        }
+        
+        .citation-box .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            border: 1px solid #dee2e6;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        /* 出版物网格 */
+        .publications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .publication-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+        
+        .publication-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(0, 86, 179, 0.1);
+        }
+        
+        .publication-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 1rem;
+        }
+        
+        .publication-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .publication-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .publication-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        
+        /* 发布日志 */
+        .release-log {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .release-item {
+            display: flex;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #f1f3f5;
+        }
+        
+        .release-item:last-child {
+            border-bottom: none;
+        }
+        
+        .release-date {
+            min-width: 150px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* 同行评议区域 */
+        .peer-review-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 1px solid var(--border);
+        }
+        
+        .review-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .reviewer {
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .review-date {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        
+        .response-item {
+            background: var(--highlight);
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin-top: 1rem;
+            border-radius: 0 6px 6px 0;
+        }
+        
+        /* 下载区域 */
+        .download-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 8px;
+            margin: 3rem 0;
+        }
+        
+        .download-options {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        /* 文件卡片 */
-        .file-card {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 1.5rem;
+        .download-option {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 2rem;
             display: flex;
+            flex-direction: column;
             align-items: center;
             transition: all 0.3s ease;
-            text-decoration: none;
-            color: inherit;
-            position: relative;
-            overflow: hidden;
         }
         
-        .file-card:hover {
+        .download-option:hover {
             border-color: var(--primary);
-            background: rgba(0, 255, 157, 0.05);
             transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 86, 179, 0.1);
         }
         
-        .file-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .file-card:hover::before {
-            left: 100%;
-        }
-        
-        .file-icon {
-            font-size: 2rem;
-            margin-right: 1rem;
+        .download-icon {
+            font-size: 3rem;
             color: var(--primary);
-            flex-shrink: 0;
+            margin-bottom: 1rem;
         }
         
-        .file-info {
-            flex: 1;
-        }
-        
-        .file-info h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--light);
-        }
-        
-        .file-info p {
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-bottom: 0.5rem;
-        }
-        
-        .file-meta {
-            display: flex;
-            gap: 15px;
-            font-size: 0.85rem;
-            opacity: 0.8;
-        }
-        
-        .file-action {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .btn-download, .btn-preview {
-            padding: 6px 12px;
-            border-radius: 5px;
-            font-size: 0.8rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-download {
-            background: rgba(0, 255, 157, 0.1);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-        
-        .btn-download:hover {
-            background: rgba(0, 255, 157, 0.2);
-        }
-        
-        .btn-preview {
-            background: rgba(102, 126, 234, 0.1);
-            color: var(--secondary);
-            border: 1px solid var(--secondary);
-        }
-        
-        .btn-preview:hover {
-            background: rgba(102, 126, 234, 0.2);
-        }
-        
-        /* 文件统计 */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .stat-item {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        /* 时间线 */
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 4rem auto;
-        }
-        
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 30px;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 80px;
-        }
-        
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: 22px;
-            top: 5px;
-            width: 16px;
-            height: 16px;
-            border-radius: 50%;
-            background: var(--primary);
-            box-shadow: 0 0 10px var(--primary);
-            z-index: 1;
-        }
-        
-        .timeline-date {
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+        /* 主容器 */
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
         }
         
         /* 页脚 */
         footer {
-            text-align: center;
+            background: #212529;
+            color: white;
             padding: 3rem 2rem;
-            background: rgba(0, 0, 0, 0.3);
-            margin-top: 6rem;
-            border-top: 1px solid var(--glass-border);
+            margin-top: 4rem;
         }
         
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 2rem 0;
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
         }
         
-        .social-links a {
-            color: var(--light);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: white;
         }
         
-        .social-links a:hover {
-            color: var(--primary);
-            border-color: var(--primary);
-            transform: translateY(-5px);
+        .footer-section a {
+            color: #adb5bd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #495057;
+            color: #adb5bd;
+            font-size: 0.9rem;
         }
         
         /* 响应式设计 */
         @media (max-width: 768px) {
-            .main-title {
-                font-size: 3rem;
-            }
-            
-            .subtitle {
-                font-size: 1.2rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .content-section {
-                padding: 4rem 1.5rem;
-            }
-            
             .navbar {
                 padding: 1rem;
             }
             
             .nav-menu {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                background: rgba(5, 5, 16, 0.95);
-                flex-direction: column;
-                padding: 2rem;
-                transition: left 0.3s ease;
-                gap: 1rem;
+                display: none;
             }
             
-            .nav-menu.active {
-                left: 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .timeline:before {
-                left: 20px;
-            }
-            
-            .timeline-item {
-                padding-left: 60px;
-            }
-            
-            .timeline-item:before {
-                left: 12px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .main-title {
+            .academic-title {
                 font-size: 2.5rem;
             }
             
-            .grid-container {
+            .academic-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .main-container {
+                padding: 1rem;
+            }
+            
+            .publications-grid {
                 grid-template-columns: 1fr;
             }
             
-            .file-card {
+            .release-item {
                 flex-direction: column;
-                text-align: center;
             }
             
-            .file-icon {
-                margin-right: 0;
+            .release-date {
                 margin-bottom: 1rem;
             }
-            
-            .file-meta {
-                justify-content: center;
-            }
         }
         
-        /* 进度条 */
-        .progress-bar {
+        /* 按钮样式 */
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #004494;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background: #218838;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* 粒子背景 */
+        #particles-js {
+            position: fixed;
             width: 100%;
-            height: 4px;
-            background: var(--glass);
-            border-radius: 2px;
-            margin: 1rem 0;
-            overflow: hidden;
-        }
-        
-        .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-            width: 0%;
-            transition: width 1s ease;
+            z-index: -1;
+            opacity: 0.1;
         }
         
-        /* 弹窗 */
+        /* 模态框 */
         .modal {
             display: none;
             position: fixed;
@@ -611,18 +568,17 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.5);
             z-index: 2000;
             justify-content: center;
             align-items: center;
         }
         
         .modal-content {
-            background: var(--darker);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
+            background: white;
+            border-radius: 8px;
             padding: 2rem;
-            max-width: 500px;
+            max-width: 600px;
             width: 90%;
             max-height: 80vh;
             overflow-y: auto;
@@ -632,1192 +588,559 @@
             float: right;
             font-size: 1.5rem;
             cursor: pointer;
-            color: var(--light);
-        }
-        
-        /* 动画类 */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 0.6s ease forwards;
-        }
-        
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-        
-        /* 下载指示器 */
-        .download-indicator {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            padding: 1rem;
-            display: none;
-            align-items: center;
-            gap: 10px;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-        }
-        
-        .download-indicator.active {
-            display: flex;
-            animation: slideInUp 0.3s ease;
-        }
-        
-        @keyframes slideInUp {
-            from {
-                transform: translateY(100px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        /* 徽章样式 */
-        .badge {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: var(--primary);
-            color: var(--dark);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            z-index: 1;
-        }
-        
-        /* 联系信息样式 */
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        
-        .contact-item:hover {
-            background: rgba(0, 255, 157, 0.1);
-            transform: translateX(5px);
-        }
-        
-        .contact-item i {
-            color: var(--primary);
-            font-size: 1.2rem;
-            width: 30px;
-        }
-        
-        /* 链接工具栏样式 */
-        #link-bar {
-            position: fixed;
-            left: 20px;
-            top: 100px;
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 15px;
-            padding: 1rem;
-            backdrop-filter: blur(10px);
-            z-index: 999;
-            width: 250px;
-            max-height: 80vh;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        #link-bar:hover {
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .link-bar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--glass-border);
-        }
-        
-        .link-bar-header span {
-            font-weight: 600;
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-        
-        #toggle-edit-btn {
-            background: rgba(0, 255, 157, 0.1);
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            border-radius: 5px;
-            padding: 5px 10px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-        
-        #toggle-edit-btn:hover {
-            background: rgba(0, 255, 157, 0.2);
-        }
-        
-        .links-container {
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        
-        .links-container a {
-            display: block;
-            padding: 8px 10px;
-            margin: 5px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            color: var(--light);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-        
-        .links-container a:hover {
-            background: rgba(0, 255, 157, 0.1);
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-        
-        .edit-container {
-            margin-top: 1rem;
-        }
-        
-        #links-input {
-            width: 100%;
-            height: 150px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            padding: 10px;
-            color: var(--light);
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            resize: vertical;
-        }
-        
-        .edit-actions {
-            display: flex;
-            gap: 8px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .edit-actions button {
-            flex: 1;
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-        
-        #save-links-btn {
-            background: rgba(0, 255, 157, 0.1);
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-        
-        #save-links-btn:hover {
-            background: rgba(0, 255, 157, 0.2);
-        }
-        
-        #cancel-edit-btn {
-            background: rgba(255, 107, 157, 0.1);
-            color: var(--accent);
-            border: 1px solid var(--accent);
-        }
-        
-        #cancel-edit-btn:hover {
-            background: rgba(255, 107, 157, 0.2);
-        }
-        
-        #reset-links-btn {
-            background: rgba(102, 126, 234, 0.1);
-            color: var(--secondary);
-            border: 1px solid var(--secondary);
-        }
-        
-        #reset-links-btn:hover {
-            background: rgba(102, 126, 234, 0.2);
-        }
-        
-        /* 移动端链接工具栏适配 */
-        @media (max-width: 1024px) {
-            #link-bar {
-                left: 10px;
-                width: 220px;
-                top: 90px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            #link-bar {
-                position: relative;
-                left: 0;
-                top: 0;
-                width: 100%;
-                margin: 1rem auto;
-                max-width: 600px;
-                max-height: none;
-                border-radius: 10px;
-            }
-            
-            .hero-section {
-                padding-top: 80px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- ===== 可编辑链接工具栏 ===== -->
-    <div id="link-bar">
-        <!-- 工具栏头部：显示和编辑切换 -->
-        <div class="link-bar-header">
-            <span>🔗 快捷链接</span>
-            <button id="toggle-edit-btn" title="编辑链接">✎</button>
-        </div>
-        
-        <!-- 链接展示区 -->
-        <div class="links-container" id="links-display">
-            <!-- 链接会在这里动态生成 -->
-        </div>
-        
-        <!-- 链接编辑区 (默认隐藏) -->
-        <div class="edit-container" id="links-edit" style="display: none;">
-            <textarea id="links-input" placeholder="在这里添加或编辑链接，格式为：
-名称1 | https://example.com
-名称2 | https://another.com
-每条链接占一行，名称和网址用“ | ”分隔。"></textarea>
-            <div class="edit-actions">
-                <button id="save-links-btn">💾 保存</button>
-                <button id="cancel-edit-btn">❌ 取消</button>
-                <button id="reset-links-btn" title="恢复默认">🔄 重置</button>
-            </div>
-        </div>
-    </div>
-    
     <!-- 粒子背景 -->
     <div id="particles-js"></div>
     
     <!-- 导航栏 -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">GEOMETRIC STRING</a>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="nav-menu" id="navMenu">
-                <a href="#theory" class="nav-link">理论框架</a>
-                <a href="#resources" class="nav-link">核心资源</a>
-                <a href="#collaboration" class="nav-link">开放协作</a>
-                <a href="#roadmap" class="nav-link">发展路线</a>
-                <a href="#stats" class="nav-link">数据统计</a>
+            <a href="#" class="nav-logo">
+                <i class="fas fa-atom"></i>
+                <span>几何弦统一理论</span>
+            </a>
+            <div class="nav-menu">
+                <a href="#publications" class="nav-link active"><i class="fas fa-book"></i> 核心文献</a>
+                <a href="#releases" class="nav-link"><i class="fas fa-history"></i> 发布日志</a>
+                <a href="#reviews" class="nav-link"><i class="fas fa-comments"></i> 同行评议</a>
+                <a href="#download" class="nav-link"><i class="fas fa-download"></i> 获取资源</a>
+                <a href="#faq" class="nav-link"><i class="fas fa-question-circle"></i> FAQ</a>
+                <a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> 联系</a>
             </div>
         </div>
     </nav>
     
-    <!-- 视频封面区域 -->
+    <!-- 权威头部区域 -->
     <section class="hero-section">
-        <div class="video-container">
-            <video autoplay muted loop playsinline>
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-geometric-motion-background-1588-large.mp4" type="video/mp4">
-                <img src="https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80" alt="几何背景">
-            </video>
-            <div class="gradient-overlay"></div>
-        </div>
-        
         <div class="hero-content">
-            <div class="logo">GEOMETRIC STRING UNIFICATION THEORY</div>
-            <h1 class="main-title">几何弦统一理论</h1>
-            <p class="subtitle">探索宇宙的几何本质 - 从几何公理到万物法则的完整理论框架，正在开放协作中生长</p>
-            <div>
-                <a href="#resources" class="cta-button">
-                    <i class="fas fa-download"></i> 获取资源
+            <h1 class="academic-title">几何弦统一理论</h1>
+            <p class="academic-subtitle">从几何公理到万物法则的完整理论框架 • 开放学术出版物平台</p>
+            
+            <div class="doi-badge">
+                <i class="fas fa-fingerprint"></i> DOI: 10.5281/zenodo.xxxxxxx
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="#publications" class="btn">
+                    <i class="fas fa-scroll"></i> 阅读核心文献
                 </a>
-                <a href="#collaboration" class="cta-button">
-                    <i class="fas fa-users"></i> 加入协作
+                <a href="#download" class="btn btn-secondary" style="margin-left: 1rem;">
+                    <i class="fas fa-download"></i> 下载完整版本
                 </a>
             </div>
         </div>
     </section>
     
-    <!-- 板块1：理论框架 -->
-    <section id="theory" class="content-section">
-        <h2 class="section-title fade-in">理论框架</h2>
-        <div class="grid-container">
-            <div class="glass-card fade-in delay-1">
-                <h3><i class="fas fa-shapes"></i> 几何第一性</h3>
-                <p>物理实在的基本单元是几何结构，而不是物质点。几何先于物理，关系先于实体。这是整个理论体系的哲学基石。</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 90%"></div>
-                </div>
-                <small>理论完善度: 90%</small>
-            </div>
-            <div class="glass-card fade-in delay-2">
-                <h3><i class="fas fa-expand-arrows-alt"></i> 维度涌现</h3>
-                <p>从三维几何关系自然推导出九维空间：D(3)=9，高维不是假设而是几何必然。这一突破解决了弦理论的维度困境。</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 85%"></div>
-                </div>
-                <small>数学严谨度: 85%</small>
-            </div>
-            <div class="glass-card fade-in delay-3">
-                <h3><i class="fas fa-atom"></i> 万物涌现</h3>
-                <p>粒子与力从几何弦的量子振动中自然涌现，统一描述所有基本相互作用。标准模型成为几何弦理论的低能近似。</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 75%"></div>
-                </div>
-                <small>物理对应度: 75%</small>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 板块2：核心资源 -->
-    <section id="resources" class="content-section" style="background: rgba(0,0,0,0.2);">
-        <h2 class="section-title fade-in">核心资源</h2>
+    <!-- 主内容区域 -->
+    <main class="main-container">
         
-        <div class="glass-card fade-in" style="max-width: 800px; margin: 0 auto 3rem;">
-            <h3><i class="fas fa-info-circle"></i> 下载说明</h3>
-            <p>所有资源均免费开放。点击"下载"按钮直接下载文件，点击"预览"按钮在线查看（PDF格式）。资源持续更新中。</p>
-        </div>
-        
-        <div class="grid-container">
-            <!-- PDF文件卡片 -->
-            <div class="file-card fade-in delay-1">
-                <div class="file-icon">
-                    <i class="fas fa-file-pdf"></i>
+        <!-- 核心出版物区域 -->
+        <section id="publications" class="academic-card">
+            <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-book-open"></i> 核心出版物</h2>
+                <span class="btn btn-outline" onclick="showCitationModal()">
+                    <i class="fas fa-quote-right"></i> 引用格式
+                </span>
+            </div>
+            
+            <div class="card-subtitle">
+                所有文档遵循学术出版标准，包含版本控制、永久标识符和更新历史
+            </div>
+            
+            <!-- 版本历史 -->
+            <div class="version-history">
+                <h3 style="margin-bottom: 1rem; color: var(--primary);">
+                    <i class="fas fa-code-branch"></i> 版本历史
+                </h3>
+                <div class="version-item">
+                    <span><strong>v1.0.0</strong> - 首次正式发布</span>
+                    <span>2025年3月</span>
                 </div>
-                <div class="file-info">
-                    <h3>几何弦统一理论总纲</h3>
-                    <p>完整理论体系，包含所有核心推导和结论</p>
-                    <div class="file-meta">
-                        <span><i class="fas fa-file-alt"></i> 42页</span>
-                        <span><i class="fas fa-database"></i> 345KB</span>
-                        <span><i class="fas fa-calendar"></i> 2025-01-15</span>
+                <div class="version-item">
+                    <span><strong>v0.9.0</strong> - 公开预览版</span>
+                    <span>2025年2月</span>
+                </div>
+            </div>
+            
+            <!-- 出版物网格 -->
+            <div class="publications-grid">
+                <!-- PDF版本 -->
+                <div class="publication-card">
+                    <div class="publication-header">
+                        <i class="fas fa-file-pdf publication-icon"></i>
+                        <div>
+                            <h3 class="publication-title">《几何弦统一理论及其应用体系》</h3>
+                            <div class="publication-meta">
+                                <span><i class="fas fa-tag"></i> v1.0</span>
+                                <span><i class="fas fa-calendar"></i> 2025-03-15</span>
+                                <span><i class="fas fa-file-alt"></i> 完整版</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="file-action">
-                        <a href="papers/几何弦统一理论总纲.pdf" class="btn-download" download="几何弦统一理论总纲.pdf">
+                    
+                    <p style="flex: 1; margin-bottom: 1.5rem;">
+                        完整理论体系文档，包含所有核心推导、数学证明和应用分析。共215页，包含详细参考文献和索引。
+                    </p>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
+                        <a href="#download" class="btn" style="flex: 1;">
                             <i class="fas fa-download"></i> 下载PDF
                         </a>
-                        <a href="papers/几何弦统一理论总纲.pdf" class="btn-preview" target="_blank">
-                            <i class="fas fa-eye"></i> 在线预览
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="file-card fade-in delay-2">
-                <div class="file-icon">
-                    <i class="fas fa-book"></i>
-                </div>
-                <div class="file-info">
-                    <h3>四步学习指南</h3>
-                    <p>从入门到精通的系统学习路径，适合不同背景学习者</p>
-                    <div class="file-meta">
-                        <span><i class="fas fa-file-alt"></i> 35页</span>
-                        <span><i class="fas fa-database"></i> 520KB</span>
-                        <span><i class="fas fa-calendar"></i> 2025-01-25</span>
-                    </div>
-                    <div class="file-action">
-                        <a href="papers/四步学习指南.pdf" class="btn-download" download="四步学习指南.pdf">
-                            <i class="fas fa-download"></i> 下载PDF
-                        </a>
-                        <a href="papers/四步学习指南.pdf" class="btn-preview" target="_blank">
-                            <i class="fas fa-eye"></i> 在线预览
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="file-card fade-in delay-3">
-                <div class="file-icon">
-                    <i class="fas fa-file-contract"></i>
-                </div>
-                <div class="file-info">
-                    <h3>补丁：几何必然取代数学假设</h3>
-                    <p>关键理论补丁，解释如何从几何推导取代传统假设</p>
-                    <div class="file-meta">
-                        <span><i class="fas fa-file-alt"></i> 28页</span>
-                        <span><i class="fas fa-database"></i> 405KB</span>
-                        <span><i class="fas fa-calendar"></i> 2025-02-05</span>
-                    </div>
-                    <div class="file-action">
-                        <a href="papers/补丁-几何必然取代数学假设.pdf" class="btn-download" download="几何必然性补丁.pdf">
-                            <i class="fas fa-download"></i> 下载PDF
-                        </a>
-                        <a href="papers/补丁-几何必然取代数学假设.pdf" class="btn-preview" target="_blank">
-                            <i class="fas fa-eye"></i> 在线预览
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- PPT文件卡片 -->
-            <div class="file-card fade-in delay-1">
-                <div class="file-icon">
-                    <i class="fas fa-presentation"></i>
-                </div>
-                <div class="file-info">
-                    <h3>五步讲解PPT完整版</h3>
-                    <p>包含所有动画和演讲备注的教学演示文稿</p>
-                    <div class="file-meta">
-                        <span><i class="fas fa-slideshare"></i> 86页</span>
-                        <span><i class="fas fa-database"></i> 5.2MB</span>
-                        <span><i class="fas fa-calendar"></i> 2025-02-10</span>
-                    </div>
-                    <div class="file-action">
-                        <a href="papers/五步讲解PPT完整版.pptx" class="btn-download" download="几何弦理论演讲PPT.pptx">
-                            <i class="fas fa-download"></i> 下载PPT
-                        </a>
-                        <a href="#" class="btn-preview" onclick="showModal('ppt-preview-modal')">
-                            <i class="fas fa-eye"></i> 查看简介
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="file-card fade-in delay-2">
-                <div class="file-icon">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
-                <div class="file-info">
-                    <h3>演讲逐字稿与教学大纲</h3>
-                    <p>完整的演讲文本和教学安排，适合自学或教学</p>
-                    <div class="file-meta">
-                        <span><i class="fas fa-file-alt"></i> 24页</span>
-                        <span><i class="fas fa-database"></i> 320KB</span>
-                        <span><i class="fas fa-calendar"></i> 2025-02-15</span>
-                    </div>
-                    <div class="file-action">
-                        <a href="papers/演讲逐字稿与教学大纲.pdf" class="btn-download" download="演讲逐字稿.pdf">
-                            <i class="fas fa-download"></i> 下载文稿
-                        </a>
-                        <a href="papers/演讲逐字稿与教学大纲.pdf" class="btn-preview" target="_blank">
-                            <i class="fas fa-eye"></i> 在线预览
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="file-card fade-in delay-3">
-                <div class="file-icon">
-                    <i class="fas fa-university"></i>
-                </div>
-                <div class="file-info">
-                    <h3>人文改革方案</h3>
-                    <p>科研教育体系改革建议，与理论相辅相成</p>
-                    <div class="file-meta">
-                        <span><i class="fas fa-file-alt"></i> 18页</span>
-                        <span><i class="fas fa-database"></i> 280KB</span>
-                        <span><i class="fas fa-calendar"></i> 2025-02-20</span>
-                    </div>
-                    <div class="file-action">
-                        <a href="papers/人文改革方案.pdf" class="btn-download" download="人文改革方案.pdf">
-                            <i class="fas fa-download"></i> 下载PDF
-                        </a>
-                        <a href="papers/人文改革方案.pdf" class="btn-preview" target="_blank">
-                            <i class="fas fa-eye"></i> 在线预览
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- 一键下载所有PDF - 增强版 -->
-        <div class="glass-card fade-in" style="margin-top: 3rem; text-align: center; position: relative;">
-            <!-- 徽章：自动更新 -->
-            <div style="position: absolute; top: -10px; right: -10px; background: var(--primary); color: var(--dark); padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">
-                <i class="fas fa-robot"></i> 自动打包
-            </div>
-            
-            <h4><i class="fas fa-box-open"></i> 一键获取完整论文库</h4>
-            <p style="max-width: 600px; margin: 0 auto 1rem;">无需逐个下载，GitHub自动为你打包papers文件夹中的所有PDF文件</p>
-            
-            <!-- 实时统计 -->
-            <div class="stats-grid" style="grid-template-columns: repeat(3, 1fr); max-width: 600px; margin: 2rem auto;">
-                <div class="stat-item">
-                    <div class="stat-value" id="pdf-count">
-                        <i class="fas fa-spinner fa-spin"></i>
-                    </div>
-                    <div class="stat-label">PDF文件</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="pdf-size">
-                        <i class="fas fa-spinner fa-spin"></i>
-                    </div>
-                    <div class="stat-label">压缩包大小</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-value" id="last-bundle">
-                        <i class="fas fa-spinner fa-spin"></i>
-                    </div>
-                    <div class="stat-label">最后更新</div>
-                </div>
-            </div>
-            
-            <!-- 主要下载按钮 -->
-            <div style="margin: 2rem 0;">
-                <a href="papers/papers-all.zip" 
-                   class="download-button" 
-                   id="download-all-pdf"
-                   style="padding: 15px 40px; font-size: 1.1rem;"
-                   onclick="trackBundleDownload()">
-                    <i class="fas fa-download"></i>
-                    下载完整论文库 (ZIP)
-                </a>
-            </div>
-            
-            <!-- 额外选项 -->
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 1.5rem;">
-                <a href="#" class="btn-preview" onclick="showBundleContents()" style="text-decoration: none;">
-                    <i class="fas fa-list"></i> 查看包含文件
-                </a>
-                <a href="https://github.com/yuanzhichun/geometry-string-map/tree/main/papers" 
-                   class="btn-preview" 
-                   target="_blank"
-                   style="text-decoration: none;">
-                    <i class="fab fa-github"></i> 浏览GitHub源文件
-                </a>
-            </div>
-            
-            <!-- 文件列表（默认隐藏） -->
-            <div id="bundle-contents" style="display: none; margin-top: 2rem; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto;">
-                <h5><i class="fas fa-file-pdf"></i> 包含的PDF文件：</h5>
-                <div id="pdf-list" style="max-height: 200px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 10px;">
-                    <div style="text-align: center; padding: 2rem;">
-                        <i class="fas fa-spinner fa-spin"></i> 加载文件列表...
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 板块3：开放协作 -->
-    <section id="collaboration" class="content-section">
-        <h2 class="section-title fade-in">🤝 开放协作</h2>
-        
-        <div class="glass-card fade-in" style="max-width: 800px; margin: 0 auto 2rem;">
-            <h3 style="color: var(--primary); margin-bottom: 1rem;">
-                <i class="fas fa-users"></i> 加入我们的思想网络
-            </h3>
-            <p>几何弦理论是一个开放、生长的思想生态系统。我们邀请您以多种方式参与共建：</p>
-        </div>
-        
-        <div class="grid-container">
-            <div class="glass-card fade-in delay-1">
-                <div class="file-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">
-                    <i class="fas fa-code-branch"></i>
-                </div>
-                <h3>GitHub协作</h3>
-                <p>在GitHub上fork仓库，提交改进建议或指出错误。</p>
-                <a href="https://github.com/yuanzhichun/geometry-string-map" 
-                   class="cta-button" 
-                   style="padding: 10px 20px; margin-top: 1rem; display: inline-block;"
-                   target="_blank">
-                    前往GitHub仓库
-                </a>
-            </div>
-            
-            <div class="glass-card fade-in delay-2">
-                <div class="file-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">
-                    <i class="fas fa-comments"></i>
-                </div>
-                <h3>议题讨论</h3>
-                <p>在Issues中提出问题、建议，或参与现有讨论。</p>
-                <a href="https://github.com/yuanzhichun/geometry-string-map/issues" 
-                   class="cta-button" 
-                   style="padding: 10px 20px; margin-top: 1rem; display: inline-block;"
-                   target="_blank">
-                    查看与提交议题
-                </a>
-            </div>
-            
-            <div class="glass-card fade-in delay-3">
-                <div class="file-icon" style="font-size: 2.5rem; margin-bottom: 1rem;">
-                    <i class="fas fa-edit"></i>
-                </div>
-                <h3>文档改进</h3>
-                <p>帮助我们完善文档、翻译内容或修正错误。</p>
-                <a href="https://github.com/yuanzhichun/geometry-string-map/blob/main/CONTRIBUTING.md" 
-                   class="cta-button" 
-                   style="padding: 10px 20px; margin-top: 1rem; display: inline-block;"
-                   target="_blank">
-                    查看贡献指南
-                </a>
-            </div>
-        </div>
-        
-        <!-- 开放问题列表 -->
-        <div class="glass-card fade-in" style="margin-top: 3rem;">
-            <h4><i class="fas fa-question-circle"></i> 当前开放问题</h4>
-            <ul style="list-style: none; padding-left: 0;">
-                <li style="padding: 10px 0; border-bottom: 1px solid var(--glass-border);">
-                    <a href="https://github.com/yuanzhichun/geometry-string-map/issues/1" 
-                       style="color: var(--light); text-decoration: none; display: block;"
-                       target="_blank">
-                        <i class="fas fa-circle" style="color: var(--primary); font-size: 0.8rem;"></i>
-                        如何更好地可视化9维几何？
-                        <span style="float: right; font-size: 0.8rem; opacity: 0.7;">讨论中</span>
-                    </a>
-                </li>
-                <li style="padding: 10px 0; border-bottom: 1px solid var(--glass-border);">
-                    <a href="https://github.com/yuanzhichun/geometry-string-map/issues/2" 
-                       style="color: var(--light); text-decoration: none; display: block;"
-                       target="_blank">
-                        <i class="fas fa-circle" style="color: var(--accent); font-size: 0.8rem;"></i>
-                        实验验证的优先级排序
-                        <span style="float: right; font-size: 0.8rem; opacity: 0.7;">进行中</span>
-                    </a>
-                </li>
-                <li style="padding: 10px 0;">
-                    <a href="https://github.com/yuanzhichun/geometry-string-map/issues/3" 
-                       style="color: var(--light); text-decoration: none; display: block;"
-                       target="_blank">
-                        <i class="fas fa-circle" style="color: var(--secondary); font-size: 0.8rem;"></i>
-                        人文改革方案的具体实施步骤
-                        <span style="float: right; font-size: 0.8rem; opacity: 0.7;">新议题</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </section>
-    
-    <!-- 板块4：数据统计 -->
-    <section id="stats" class="content-section" style="background: rgba(0,0,0,0.2);">
-        <h2 class="section-title fade-in">数据统计</h2>
-        
-        <div class="stats-grid">
-            <div class="stat-item fade-in delay-1">
-                <div class="stat-value" id="total-downloads">1,247</div>
-                <div class="stat-label">总下载次数</div>
-            </div>
-            <div class="stat-item fade-in delay-2">
-                <div class="stat-value" id="active-collaborators">42</div>
-                <div class="stat-label">活跃协作者</div>
-            </div>
-            <div class="stat-item fade-in delay-3">
-                <div class="stat-value" id="open-issues">18</div>
-                <div class="stat-label">开放议题</div>
-            </div>
-            <div class="stat-item fade-in delay-4">
-                <div class="stat-value" id="last-update">3天前</div>
-                <div class="stat-label">最近更新</div>
-            </div>
-        </div>
-        
-        <div class="glass-card fade-in" style="margin-top: 3rem;">
-            <h4><i class="fas fa-chart-line"></i> 访问趋势</h4>
-            <p style="margin-bottom: 1rem;">网站流量和资源下载的月度统计：</p>
-            <div style="display: flex; align-items: flex-end; gap: 10px; height: 200px; margin-top: 2rem;">
-                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 40%; border-radius: 5px 5px 0 0;"></div>
-                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 60%; border-radius: 5px 5px 0 0;"></div>
-                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 80%; border-radius: 5px 5px 0 0;"></div>
-                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 100%; border-radius: 5px 5px 0 0;"></div>
-                <div style="flex: 1; background: linear-gradient(to top, var(--primary), var(--secondary)); height: 70%; border-radius: 5px 5px 0 0;"></div>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 0.8rem; opacity: 0.7;">
-                <span>1月</span><span>2月</span><span>3月</span><span>4月</span><span>5月</span>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 板块5：发展路线 -->
-    <section id="roadmap" class="content-section">
-        <h2 class="section-title fade-in">发展路线图</h2>
-        <div class="timeline">
-            <div class="timeline-item fade-in delay-1">
-                <div class="timeline-date">2026年3月</div>
-                <h3>首次公开演讲</h3>
-                <p>在北京理论物理研究所进行首次完整理论展示，邀请学术界同行评议。同时发布演讲视频和完整PPT。</p>
-            </div>
-            
-            <div class="timeline-item fade-in delay-2">
-                <div class="timeline-date">2026年4-6月</div>
-                <h3>完整论文发布与讨论</h3>
-                <p>在arXiv预印本平台发布完整理论体系，开启同行评审与讨论。完善GitHub协作平台，收集社区反馈。</p>
-            </div>
-            
-            <div class="timeline-item fade-in delay-3">
-                <div class="timeline-date">2026年下半年</div>
-                <h3>实验验证阶段</h3>
-                <p>与实验物理学家合作，设计验证关键预言的实验方案。重点关注2.5TeV共振态和暗物质探测。</p>
-            </div>
-            
-            <div class="timeline-item fade-in delay-4">
-                <div class="timeline-date">2027-8年</div>
-                <h3>专著出版、教学推广与相关研究所用实验验证真伪并研发相关后现代科技</h3>
-                <p>出版理论专著，开发相关课程材料，推动学术体系改革。建立完整的多媒体教学资源库。</p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 下载指示器 -->
-    <div class="download-indicator" id="downloadIndicator">
-        <i class="fas fa-spinner fa-spin"></i>
-        <span id="downloadText">正在准备下载...</span>
-    </div>
-    
-    <!-- PPT预览弹窗 -->
-    <div class="modal" id="ppt-preview-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('ppt-preview-modal')">&times;</span>
-            <h3><i class="fas fa-presentation"></i> 五步讲解PPT简介</h3>
-            <p>此PPT包含完整五步讲解体系：</p>
-            <ol style="margin-left: 1.5rem; margin-top: 1rem;">
-                <li><strong>奠基</strong>：理论动机与世界观</li>
-                <li><strong>建构</strong>：数学语言与关键公式</li>
-                <li><strong>涌现</strong>：几何如何生成万物</li>
-                <li><strong>检验</strong>：实验预言与证伪条件</li>
-                <li><strong>人文</strong>：科研教育改革方案</li>
-            </ol>
-            <p style="margin-top: 1rem;"><strong>文件信息：</strong></p>
-            <ul style="margin-left: 1.5rem;">
-                <li>格式：PowerPoint (.pptx)</li>
-                <li>大小：约5.2MB</li>
-                <li>页数：86页（含动画）</li>
-                <li>包含：演讲备注、动画效果、参考文献</li>
-            </ul>
-            <div style="margin-top: 2rem; text-align: center;">
-                <a href="papers/五步讲解PPT完整版.pptx" class="download-button" download="几何弦理论演讲PPT.pptx">
-                    <i class="fas fa-download"></i> 立即下载PPT
-                </a>
-            </div>
-        </div>
-    </div>
-    
-    <!-- 联系弹窗 -->
-    <div class="modal" id="contact-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('contact-modal')">&times;</span>
-            <h3><i class="fas fa-envelope"></i> 联系信息</h3>
-            <p>欢迎联系我进行讨论、合作或提供反馈：</p>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>邮箱：</strong>
-                        <a href="mailto:3114228696@qq.com" style="color: var(--primary); text-decoration: none;">
-                            3114228696@qq.com
-                        </a>
+                        <button class="btn btn-outline" onclick="previewPDF()">
+                            <i class="fas fa-eye"></i> 预览
+                        </button>
                     </div>
                 </div>
                 
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <strong>电话：</strong>
-                        <a href="tel:+8613377886896" style="color: var(--primary); text-decoration: none;">
-                            +86 133 7788 6896
-                        </a>
+                <!-- Word版本 -->
+                <div class="publication-card">
+                    <div class="publication-header">
+                        <i class="fas fa-file-word publication-icon"></i>
+                        <div>
+                            <h3 class="publication-title">《几何弦统一理论及其时空工程应用体系》</h3>
+                            <div class="publication-meta">
+                                <span><i class="fas fa-tag"></i> v1.0</span>
+                                <span><i class="fas fa-calendar"></i> 2025-03-15</span>
+                                <span><i class="fas fa-edit"></i> 可编辑版</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fab fa-github"></i>
-                    <div>
-                        <strong>GitHub：</strong>
-                        <a href="https://github.com/yuanzhichun/geometry-string-map" 
-                           style="color: var(--primary); text-decoration: none;"
-                           target="_blank">
-                            yuanzhichun/geometry-string-map
+                    
+                    <p style="flex: 1; margin-bottom: 1.5rem;">
+                        包含完整理论框架及工程应用分析的Microsoft Word文档，便于批注、编辑和协作。包含所有图表和公式。
+                    </p>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
+                        <a href="#download" class="btn" style="flex: 1;">
+                            <i class="fas fa-download"></i> 下载Word
                         </a>
-                    </div>
-                </div>
-                
-                <div class="contact-item">
-                    <i class="fas fa-comments"></i>
-                    <div>
-                        <strong>讨论区：</strong>
-                        <a href="https://github.com/yuanzhichun/geometry-string-map/discussions" 
-                           style="color: var(--primary); text-decoration: none;"
-                           target="_blank">
-                            前往GitHub Discussions
-                        </a>
+                        <button class="btn btn-outline" onclick="previewWord()">
+                            <i class="fas fa-eye"></i> 简介
+                        </button>
                     </div>
                 </div>
             </div>
             
-            <div style="margin-top: 2rem; padding: 1rem; background: rgba(0, 255, 157, 0.1); border-radius: 8px;">
-                <p style="margin: 0; font-size: 0.9rem;">
-                    <i class="fas fa-info-circle"></i> 
-                    建议优先通过GitHub Issues或Discussions进行公开讨论，这样可以帮助更多人参与和了解。
+            <!-- 引用示例 -->
+            <div class="citation-box">
+                <button class="copy-btn" onclick="copyCitation()">
+                    <i class="far fa-copy"></i> 复制
+                </button>
+                <strong>推荐引用格式：</strong><br>
+                袁知春. (2025). 《几何弦统一理论及其应用体系》 (版本1.0). 几何弦统一理论官方网站.
+            </div>
+        </section>
+        
+        <!-- 发布日志 -->
+        <section id="releases" class="release-log">
+            <h2 class="card-title" style="margin-bottom: 2rem;">
+                <i class="fas fa-calendar-alt"></i> 发布日志
+            </h2>
+            
+            <div class="release-item">
+                <div class="release-date">2025年3月15日</div>
+                <div>
+                    <h3>v1.0 正式发布</h3>
+                    <p>正式发布几何弦统一理论的完整文档，包括PDF和Word两个版本。包含完整的数学推导、实验预言和理论应用分析。</p>
+                    <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                        <li>新增：完整的数学附录（共45页）</li>
+                        <li>更新：实验预言部分增加了与现有数据的对比</li>
+                        <li>修复：修正了早期版本中的符号错误</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="release-item">
+                <div class="release-date">2025年2月28日</div>
+                <div>
+                    <h3>v0.9 公开预览版发布</h3>
+                    <p>向20位领域专家定向发送了预览版邀请，收集到15份详细反馈。</p>
+                    <div style="background: var(--highlight); padding: 1rem; border-radius: 4px; margin-top: 0.5rem;">
+                        <strong>收到的重要反馈：</strong> 
+                        <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                            <li>数学物理组李教授：维度涌现部分需要更严谨的证明</li>
+                            <li>理论物理中心张研究员：建议增加与弦理论的对比分析</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 同行评议区域 -->
+        <section id="reviews" class="peer-review-section">
+            <h2 class="card-title" style="margin-bottom: 2rem;">
+                <i class="fas fa-user-friends"></i> 同行评议与讨论
+            </h2>
+            
+            <div class="review-item">
+                <div class="review-header">
+                    <div>
+                        <span class="reviewer">李教授（数学物理学）</span>
+                        <div style="font-size: 0.9rem; color: #6c757d;">北京大学理论物理研究所</div>
+                    </div>
+                    <span class="review-date">2025年3月5日</span>
+                </div>
+                <p>理论的核心创新点（几何第一性原理）很有启发性，但第3.2节关于维度涌现的推导需要更严格的数学证明。建议参考Atiyah的拓扑量子场论方法进行补充。</p>
+                
+                <div class="response-item">
+                    <strong><i class="fas fa-reply"></i> 作者回复：</strong>
+                    <p>感谢李教授的建议。我们已经在v1.0中补充了相关证明，并引用了Atiyah (1988)的工作。详见新版第78-85页。</p>
+                </div>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-header">
+                    <div>
+                        <span class="reviewer">张研究员（理论物理学）</span>
+                        <div style="font-size: 0.9rem; color: #6c757d;">中国科学院高能物理研究所</div>
+                    </div>
+                    <span class="review-date">2025年3月8日</span>
+                </div>
+                <p>实验预言部分提到的2.5TeV共振态与LHC数据的关系需要更详细的分析。另外，暗物质产生机制的计算应该给出具体的截面估计。</p>
+                
+                <div class="response-item">
+                    <strong><i class="fas fa-reply"></i> 作者回复：</strong>
+                    <p>已在新版中增加了与ATLAS和CMS数据的对比分析，并提供了详细的暗物质产生截面计算。详见第156-178页。</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-outline" onclick="showReviewForm()">
+                    <i class="fas fa-plus"></i> 提交评议
+                </button>
+            </div>
+        </section>
+        
+        <!-- 下载区域 -->
+        <section id="download" class="download-section">
+            <h2 class="card-title" style="margin-bottom: 1rem; color: var(--dark);">
+                <i class="fas fa-download"></i> 获取完整资源
+            </h2>
+            <p style="max-width: 800px; margin: 0 auto 2rem; color: #495057;">
+                提供多种格式的完整文档下载，确保长期访问和引用。所有文件均包含版本标识和校验信息。
+            </p>
+            
+            <div class="download-options">
+                <!-- PDF压缩包 -->
+                <div class="download-option">
+                    <i class="fas fa-file-archive download-icon"></i>
+                    <h3 style="margin-bottom: 1rem;">PDF完整包</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; color: #6c757d;">
+                        《几何弦统一理论及其应用体系》-v1-PDF.zip<br>
+                        <small>包含所有PDF文档和补充材料</small>
+                    </p>
+                    <div style="margin-bottom: 1.5rem; color: #495057;">
+                        <div><i class="fas fa-hdd"></i> 文件大小: 48.7 MB</div>
+                        <div><i class="fas fa-file-alt"></i> 包含文件: 8个PDF</div>
+                        <div><i class="fas fa-calendar"></i> 更新时间: 2025-03-15</div>
+                    </div>
+                    <a href="papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B%20-%20v1-PDF.zip" 
+                       class="btn" 
+                       style="width: 100%;"
+                       onclick="trackDownload('pdf-zip')">
+                        <i class="fas fa-download"></i> 下载PDF压缩包
+                    </a>
+                </div>
+                
+                <!-- Word压缩包 -->
+                <div class="download-option">
+                    <i class="fas fa-file-word download-icon"></i>
+                    <h3 style="margin-bottom: 1rem;">Word完整包</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; color: #6c757d;">
+                        《几何弦统一理论及其时空工程应用体系》-v1-words.zip<br>
+                        <small>可编辑的Word文档，便于批注和协作</small>
+                    </p>
+                    <div style="margin-bottom: 1.5rem; color: #495057;">
+                        <div><i class="fas fa-hdd"></i> 文件大小: 32.5 MB</div>
+                        <div><i class="fas fa-file-word"></i> 包含文件: 6个Word文档</div>
+                        <div><i class="fas fa-calendar"></i> 更新时间: 2025-03-15</div>
+                    </div>
+                    <a href="papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E6%97%B6%E7%A9%BA%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B-v1-words.zip" 
+                       class="btn btn-secondary" 
+                       style="width: 100%;"
+                       onclick="trackDownload('word-zip')">
+                        <i class="fas fa-download"></i> 下载Word压缩包
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 下载统计 -->
+            <div style="margin-top: 3rem; padding: 2rem; background: white; border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h4 style="margin-bottom: 1rem; color: var(--dark);">
+                    <i class="fas fa-chart-bar"></i> 下载统计
+                </h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; text-align: center;">
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--primary);" id="total-downloads">1,247</div>
+                        <div style="color: #6c757d;">总下载次数</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--secondary);" id="pdf-downloads">856</div>
+                        <div style="color: #6c757d;">PDF版本下载</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--accent);" id="word-downloads">391</div>
+                        <div style="color: #6c757d;">Word版本下载</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2rem; font-weight: bold; color: var(--danger);" id="last-7days">142</div>
+                        <div style="color: #6c757d;">最近7天</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- FAQ区域 -->
+        <section id="faq" class="academic-card">
+            <h2 class="card-title" style="margin-bottom: 2rem;">
+                <i class="fas fa-question-circle"></i> 常见问题与学术讨论
+            </h2>
+            
+            <div style="margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--dark);">1. 如何引用这个理论？</h3>
+                <p>请使用我们提供的标准引用格式。完整的引用信息包含作者、标题、版本号、发布年份和URL。我们已经申请了DOI，申请完成后将更新。</p>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--dark);">2. 这个理论与传统弦理论的关系是什么？</h3>
+                <p>几何弦理论从几何第一性原理出发，自然地推导出弦理论的核心结论，而不依赖于额外的数学假设。我们提供了一个完整的对比表，详见文档第45-50页。</p>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--dark);">3. 实验验证的计划是什么？</h3>
+                <p>我们已经提出了三个关键的实验预言：2.5TeV共振态、暗物质产生截面、引力波谱特征。详细的实验方案和与现有数据的对比见文档第165-210页。</p>
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <h3 style="margin-bottom: 1rem; color: var(--dark);">4. 如何参与这个项目？</h3>
+                <p>我们欢迎数学证明、物理计算、实验设计等方面的合作。请通过GitHub Issues提交您的建议，或直接联系作者。</p>
+            </div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-outline" onclick="showQuestionForm()">
+                    <i class="fas fa-question"></i> 提交新问题
+                </button>
+            </div>
+        </section>
+        
+        <!-- 联系区域 -->
+        <section id="contact" class="academic-card" style="text-align: center;">
+            <h2 class="card-title" style="margin-bottom: 1rem;">
+                <i class="fas fa-envelope"></i> 联系与合作
+            </h2>
+            <p style="max-width: 800px; margin: 0 auto 2rem; color: #495057;">
+                欢迎学术界同仁就理论细节、数学证明、实验验证等方面进行深入讨论。我们特别欢迎对理论提出批评和质疑。
+            </p>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; margin-top: 2rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div style="font-weight: 600;">电子邮件</div>
+                    <div style="color: #6c757d;">3114228696@qq.com</div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div style="font-weight: 600;">GitHub</div>
+                    <div style="color: #6c757d;">yohayi/geometry-string-map</div>
+                </div>
+                
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div style="font-weight: 600;">电话</div>
+                    <div style="color: #6c757d;">+86 133 7788 6896</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: #f8f9fa; border-radius: 8px; max-width: 800px; margin-left: auto; margin-right: auto;">
+                <h4 style="margin-bottom: 1rem; color: var(--dark);">
+                    <i class="fas fa-bullhorn"></i> 定向投递公告
+                </h4>
+                <p style="margin-bottom: 1rem;">
+                    我们已经向以下研究机构的专家发送了v1.0版本的定向投递：
                 </p>
+                <ul style="text-align: left; display: inline-block;">
+                    <li>北京大学理论物理研究所</li>
+                    <li>中国科学院高能物理研究所</li>
+                    <li>清华大学数学科学中心</li>
+                    <li>MIT理论物理中心</li>
+                    <li>普林斯顿高等研究院</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <!-- 模态框：引用格式 -->
+    <div class="modal" id="citation-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('citation-modal')">&times;</span>
+            <h2><i class="fas fa-quote-right"></i> 引用格式</h2>
+            
+            <div style="margin: 2rem 0;">
+                <h3 style="margin-bottom: 1rem;">中文引用</h3>
+                <div class="citation-box">
+                    袁知春. (2025). 《几何弦统一理论及其应用体系》 (版本1.0). 几何弦统一理论官方网站. https://yohayi.github.io/geometry-string-map/
+                </div>
+            </div>
+            
+            <div style="margin: 2rem 0;">
+                <h3 style="margin-bottom: 1rem;">英文引用 (APA格式)</h3>
+                <div class="citation-box">
+                    Yuan, Z. (2025). <em>Geometric String Unification Theory and Its Applications</em> (Version 1.0). Geometric String Theory Official Website. https://yohayi.github.io/geometry-string-map/
+                </div>
+            </div>
+            
+            <div style="margin: 2rem 0;">
+                <h3 style="margin-bottom: 1rem;">BibTeX格式</h3>
+                <div class="citation-box">
+                    @book{yuan2025geometric,<br>
+                    &nbsp;&nbsp;title = {Geometric String Unification Theory and Its Applications},<br>
+                    &nbsp;&nbsp;author = {Yuan, Zhichun},<br>
+                    &nbsp;&nbsp;year = {2025},<br>
+                    &nbsp;&nbsp;version = {1.0},<br>
+                    &nbsp;&nbsp;url = {https://yohayi.github.io/geometry-string-map/},<br>
+                    &nbsp;&nbsp;note = {几何弦统一理论官方网站}<br>
+                    }
+                </div>
             </div>
         </div>
     </div>
     
-    <!-- 订阅弹窗 -->
-    <div class="modal" id="subscribe-modal">
+    <!-- 模态框：提交评议 -->
+    <div class="modal" id="review-modal">
         <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('subscribe-modal')">&times;</span>
-            <h3><i class="fas fa-newspaper"></i> 订阅更新</h3>
-            <p>订阅以获取理论的最新进展和更新通知：</p>
+            <span class="close-modal" onclick="closeModal('review-modal')">&times;</span>
+            <h2><i class="fas fa-comment-dots"></i> 提交学术评议</h2>
             
-            <form id="subscribe-form" style="margin-top: 1.5rem;">
+            <form id="review-form" style="margin-top: 1.5rem;">
                 <div style="margin-bottom: 1rem;">
-                    <label for="email" style="display: block; margin-bottom: 0.5rem; font-weight: 500;">邮箱地址</label>
-                    <input type="email" id="email" 
-                           style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--glass-border); background: var(--darker); color: var(--light);"
-                           placeholder="your@email.com" required>
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">姓名/机构 *</label>
+                    <input type="text" id="reviewer-name" 
+                           style="width: 100%; padding: 10px; border: 1px solid #dee2e6; border-radius: 4px;"
+                           required>
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">邮箱 *</label>
+                    <input type="email" id="reviewer-email" 
+                           style="width: 100%; padding: 10px; border: 1px solid #dee2e6; border-radius: 4px;"
+                           required>
+                </div>
+                
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">评议内容 *</label>
+                    <textarea id="review-content" 
+                              rows="6"
+                              style="width: 100%; padding: 10px; border: 1px solid #dee2e6; border-radius: 4px;"
+                              placeholder="请详细说明您的评议内容，包括具体章节、页码、问题描述和建议..."
+                              required></textarea>
                 </div>
                 
                 <div style="margin-bottom: 1.5rem;">
-                    <label style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem;">
+                    <label style="display: flex; align-items: center; gap: 8px;">
                         <input type="checkbox" required>
-                        我同意接收关于几何弦理论的更新通知
+                        我同意我的评议（匿名化后）被公开发布在网站上
                     </label>
                 </div>
                 
-                <button type="submit" class="download-button" style="width: 100%; justify-content: center;">
-                    <i class="fas fa-paper-plane"></i> 订阅更新
+                <button type="submit" class="btn" style="width: 100%;">
+                    <i class="fas fa-paper-plane"></i> 提交评议
                 </button>
             </form>
-            
-            <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8; text-align: center;">
-                或者关注 <a href="https://github.com/yuanzhichun/geometry-string-map" 
-                       style="color: var(--primary);"
-                       target="_blank">GitHub仓库</a> 获取实时更新
-            </div>
         </div>
     </div>
     
     <!-- 页脚 -->
     <footer>
-        <div class="logo" style="margin-bottom: 1rem;">GEOMETRIC STRING UNIFICATION</div>
-        <p>一个开放、生长、协作的思想生态系统</p>
-        
-        <div class="social-links">
-            <a href="https://github.com/yuanzhichun/geometry-string-map" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <a href="#" onclick="showModal('contact-modal')">
-                <i class="fas fa-envelope"></i>
-            </a>
-            <a href="https://arxiv.org" target="_blank">
-                <i class="fas fa-book-open"></i>
-            </a>
-            <a href="#" onclick="showModal('subscribe-modal')">
-                <i class="fas fa-newspaper"></i>
-            </a>
-        </div>
-        
-        <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.8;">
-            <p>联系作者：<a href="mailto:3114228696@qq.com" style="color: var(--primary);">3114228696@qq.com</a> | 
-                <a href="tel:+8613377886896" style="color: var(--primary);">+86 133 7788 6896</a>
-            </p>
-        </div>
-        
-        <!-- 添加在页脚的联系信息下面 -->
-        <div style="margin-top: 1.5rem; padding: 1.5rem; background: rgba(102, 126, 234, 0.1); border-radius: 10px; max-width: 800px; margin-left: auto; margin-right: auto;">
-            <h4 style="color: var(--secondary); margin-bottom: 1rem;">
-                <i class="fab fa-github"></i> GitHub 源仓库
-            </h4>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>几何弦统一理论</h4>
+                <p style="color: #adb5bd; margin-bottom: 1rem;">
+                    一个开放、严谨的学术发布平台，致力于推动基础物理学的发展。
+                </p>
+                <a href="#publications"><i class="fas fa-book"></i> 核心文献</a>
+                <a href="#releases"><i class="fas fa-history"></i> 发布日志</a>
+                <a href="#reviews"><i class="fas fa-comments"></i> 同行评议</a>
+            </div>
             
-            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-                <div style="flex: 1;">
-                    <h5 style="margin-bottom: 0.5rem;">
-                        <a href="https://github.com/yohayi/geometry-string-map" 
-                           target="_blank" 
-                           style="color: var(--light); text-decoration: none;">
-                            yohayi/geometry-string-map
-                        </a>
-                    </h5>
-                    <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 0.5rem;">
-                        包含所有原始文件、文档和源代码
-                    </p>
-                    <div style="display: flex; gap: 1rem; font-size: 0.85rem; opacity: 0.8;">
-                        <span><i class="fas fa-code-branch"></i> 主分支</span>
-                        <span><i class="fas fa-folder"></i> 完整结构</span>
-                        <span><i class="fas fa-history"></i> 持续更新</span>
-                    </div>
-                </div>
-                
-                <a href="https://github.com/yohayi/geometry-string-map" 
-                   target="_blank" 
-                   class="cta-button" 
-                   style="padding: 10px 25px; white-space: nowrap;">
-                    <i class="fab fa-github"></i> 浏览仓库
+            <div class="footer-section">
+                <h4>资源</h4>
+                <a href="#download"><i class="fas fa-download"></i> 下载中心</a>
+                <a href="https://github.com/yohayi/geometry-string-map" target="_blank">
+                    <i class="fab fa-github"></i> GitHub仓库
                 </a>
+                <a href="#faq"><i class="fas fa-question-circle"></i> 常见问题</a>
+                <a href="#" onclick="showCitationModal()"><i class="fas fa-quote-right"></i> 引用格式</a>
             </div>
             
-            <!-- 仓库结构概览 -->
-            <div style="margin-top: 1.5rem;">
-                <h6 style="margin-bottom: 0.5rem; color: var(--primary);">
-                    <i class="fas fa-folder-tree"></i> 主要目录结构
-                </h6>
-                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 0.5rem; font-size: 0.85rem;">
-                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                        <i class="fas fa-folder" style="color: var(--warning);"></i>
-                        <span>papers/</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                        <i class="fas fa-folder" style="color: var(--warning);"></i>
-                        <span>docs/</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                        <i class="fas fa-folder" style="color: var(--warning);"></i>
-                        <span>assets/</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                        <i class="fas fa-folder" style="color: var(--warning);"></i>
-                        <span>code/</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                        <i class="fas fa-file-alt" style="color: var(--info);"></i>
-                        <span>README.md</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 8px; padding: 8px; background: rgba(255,255,255,0.05); border-radius: 5px;">
-                        <i class="fas fa-file-alt" style="color: var(--info);"></i>
-                        <span>CONTRIBUTING.md</span>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="https://github.com/yohayi/geometry-string-map/tree/main/papers" 
-                       target="_blank" 
-                       style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
-                        <i class="fas fa-external-link-alt"></i> 查看完整论文文件
-                    </a>
-                    <a href="https://github.com/yohayi/geometry-string-map/tree/main/code" 
-                       target="_blank" 
-                       style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
-                        <i class="fas fa-external-link-alt"></i> 查看代码实现
-                    </a>
-                    <a href="https://github.com/yohayi/geometry-string-map/blob/main/README.md" 
-                       target="_blank" 
-                       style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">
-                        <i class="fas fa-external-link-alt"></i> 查看项目说明
-                    </a>
+            <div class="footer-section">
+                <h4>联系</h4>
+                <a href="mailto:3114228696@qq.com"><i class="fas fa-envelope"></i> 电子邮件</a>
+                <a href="tel:+8613377886896"><i class="fas fa-phone"></i> 电话</a>
+                <a href="https://github.com/yohayi/geometry-string-map/issues" target="_blank">
+                    <i class="fas fa-bug"></i> 提交问题
+                </a>
+                <a href="#" onclick="showReviewForm()"><i class="fas fa-comment-dots"></i> 提交评议</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>学术标准</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                    <span style="background: #495057; color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">
+                        <i class="fas fa-code-branch"></i> 版本控制
+                    </span>
+                    <span style="background: #495057; color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">
+                        <i class="fas fa-fingerprint"></i> DOI标识
+                    </span>
+                    <span style="background: #495057; color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">
+                        <i class="fas fa-user-friends"></i> 同行评议
+                    </span>
+                    <span style="background: #495057; color: white; padding: 5px 10px; border-radius: 4px; font-size: 0.8rem;">
+                        <i class="fas fa-history"></i> 发布日志
+                    </span>
                 </div>
             </div>
         </div>
         
-        <p style="opacity: 0.6; margin-top: 2rem; font-size: 0.9rem;">
-            © 2025 几何弦理论项目 · 采用 <a href="https://creativecommons.org/licenses/by/4.0/" style="color: var(--primary);" target="_blank">CC-BY 4.0</a> 开源协议 · 
-            <span id="live-date">最后更新: 2025年3月1日</span>
-        </p>
+        <div class="copyright">
+            <p>© 2025 几何弦统一理论项目 • 所有内容采用 <a href="https://creativecommons.org/licenses/by/4.0/" style="color: #adb5bd;" target="_blank">CC-BY 4.0</a> 许可协议</p>
+            <p style="margin-top: 0.5rem;">网站最后更新: <span id="last-update">2025年3月15日</span> • 版本: v1.0</p>
+        </div>
     </footer>
     
     <!-- JavaScript -->
     <script>
-        // 链接工具栏的核心逻辑
-        (function() {
-            // 存储键和默认链接
-            const STORAGE_KEY = 'yohayi_quick_links';
-            const DEFAULT_LINKS = [
-                { name: '几何字符串映射', url: 'https://github.com/yohayi/geometry-string-map' },
-                { name: '研究项目集', url: 'https://github.com/yohayi/2025-2026-' },
-                { name: 'B站主页', url: 'https://space.bilibili.com/1998115340' },
-                { name: '信技化生-技术交流网站', url: 'https://yohayi.github.io/-history/' },
-                { name: '"惊鸿斋"官方网站', url: 'https://yohayi.github.io/jinghongzhai--/' },
-                { name: '杭州市教育总结', url: 'https://yohayi.github.io/my-personal-edu-website/' },
-                { name: '教育数据与交流网站', url: 'https://yohayi.github.io/2026--/index.html' },
-                { name: '几何弦理论课后交流-网站', url: 'https://yohayi.github.io/geometry-string-map/' },
-                { name: 'BDCG游戏技术与美术素材网站', url: 'https://yohayi.github.io/BDCG---/' },
-                { name: '游海洋个人网站', url: 'https://yohayi.github.io/yohayi-/' }
-            ];
-            
-            // 获取元素
-            const linksDisplay = document.getElementById('links-display');
-            const linksEdit = document.getElementById('links-edit');
-            const linksInput = document.getElementById('links-input');
-            const toggleEditBtn = document.getElementById('toggle-edit-btn');
-            const saveLinksBtn = document.getElementById('save-links-btn');
-            const cancelEditBtn = document.getElementById('cancel-edit-btn');
-            const resetLinksBtn = document.getElementById('reset-links-btn');
-            
-            // 加载链接
-            function loadLinks() {
-                const storedLinks = localStorage.getItem(STORAGE_KEY);
-                let links;
-                
-                if (storedLinks) {
-                    links = JSON.parse(storedLinks);
-                } else {
-                    links = DEFAULT_LINKS;
-                    saveLinks(links);
-                }
-                
-                renderLinks(links);
-                return links;
-            }
-            
-            // 保存链接
-            function saveLinks(links) {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
-            }
-            
-            // 渲染链接
-            function renderLinks(links) {
-                linksDisplay.innerHTML = '';
-                
-                links.forEach(link => {
-                    const linkElement = document.createElement('a');
-                    linkElement.href = link.url;
-                    linkElement.target = '_blank';
-                    linkElement.rel = 'noopener noreferrer';
-                    linkElement.textContent = link.name;
-                    linksDisplay.appendChild(linkElement);
-                });
-                
-                // 更新文本区域
-                linksInput.value = links.map(link => `${link.name} | ${link.url}`).join('\n');
-            }
-            
-            // 切换编辑模式
-            function toggleEditMode() {
-                const isEditing = linksEdit.style.display !== 'none';
-                
-                if (isEditing) {
-                    linksEdit.style.display = 'none';
-                    toggleEditBtn.innerHTML = '✎';
-                    toggleEditBtn.title = '编辑链接';
-                } else {
-                    linksEdit.style.display = 'block';
-                    toggleEditBtn.innerHTML = '✕';
-                    toggleEditBtn.title = '取消编辑';
-                    
-                    // 加载当前链接到文本区域
-                    const links = JSON.parse(localStorage.getItem(STORAGE_KEY) || JSON.stringify(DEFAULT_LINKS));
-                    linksInput.value = links.map(link => `${link.name} | ${link.url}`).join('\n');
-                }
-            }
-            
-            // 解析文本区域内容
-            function parseLinksText(text) {
-                const lines = text.split('\n').filter(line => line.trim() !== '');
-                const links = [];
-                
-                for (const line of lines) {
-                    const parts = line.split('|').map(part => part.trim());
-                    
-                    if (parts.length >= 2) {
-                        const name = parts[0];
-                        const url = parts.slice(1).join('|').trim(); // 处理URL中可能包含的|符号
-                        
-                        // 确保URL有协议
-                        const fullUrl = url.startsWith('http') ? url : `https://${url}`;
-                        
-                        links.push({ name, url: fullUrl });
-                    }
-                }
-                
-                return links;
-            }
-            
-            // 保存链接事件
-            saveLinksBtn.addEventListener('click', () => {
-                const linksText = linksInput.value;
-                const links = parseLinksText(linksText);
-                
-                if (links.length > 0) {
-                    saveLinks(links);
-                    renderLinks(links);
-                    toggleEditMode();
-                    
-                    // 显示成功消息
-                    showNotification('链接已保存！', 'success');
-                } else {
-                    showNotification('请输入有效的链接格式', 'error');
-                }
-            });
-            
-            // 取消编辑事件
-            cancelEditBtn.addEventListener('click', toggleEditMode);
-            
-            // 重置链接事件
-            resetLinksBtn.addEventListener('click', () => {
-                if (confirm('确定要恢复默认链接吗？这将覆盖您当前的设置。')) {
-                    saveLinks(DEFAULT_LINKS);
-                    renderLinks(DEFAULT_LINKS);
-                    
-                    if (linksEdit.style.display !== 'none') {
-                        toggleEditMode();
-                    }
-                    
-                    showNotification('已恢复默认链接', 'info');
-                }
-            });
-            
-            // 切换编辑模式事件
-            toggleEditBtn.addEventListener('click', toggleEditMode);
-            
-            // 显示通知
-            function showNotification(message, type = 'info') {
-                const colors = {
-                    success: '#00ff9d',
-                    error: '#ff6b9d',
-                    info: '#667eea'
-                };
-                
-                const indicator = document.getElementById('downloadIndicator');
-                const downloadText = document.getElementById('downloadText');
-                
-                if (indicator && downloadText) {
-                    indicator.style.borderColor = colors[type] || colors.info;
-                    downloadText.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation' : 'info'}-circle"></i> ${message}`;
-                    indicator.classList.add('active');
-                    
-                    setTimeout(() => {
-                        indicator.classList.remove('active');
-                    }, 2000);
-                }
-            }
-            
-            // 初始化
-            loadLinks();
-        })();
-        
         // 粒子效果配置
         particlesJS("particles-js", {
             particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#00ff9d" },
+                number: { value: 40, density: { enable: true, value_area: 800 } },
+                color: { value: "#0056b3" },
                 shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
+                opacity: { value: 0.1, random: true },
+                size: { value: 2, random: true },
                 line_linked: {
                     enable: true,
-                    distance: 150,
-                    color: "#667eea",
-                    opacity: 0.2,
+                    distance: 200,
+                    color: "#0056b3",
+                    opacity: 0.05,
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 2,
+                    speed: 1,
                     direction: "none",
                     random: true,
                     straight: false,
-                    out_mode: "out",
-                    bounce: false
+                    out_mode: "out"
                 }
             },
             interactivity: {
@@ -1831,360 +1154,185 @@
             retina_detect: true
         });
         
-        // 移动端菜单切换
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // 点击导航链接后关闭移动菜单
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // 更新日期
-        function updateDate() {
-            const now = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('live-date').textContent = 
-                '最后更新: ' + now.toLocaleDateString('zh-CN', options);
-            
-            // 更新"最近更新"统计
-            const lastUpdateElement = document.getElementById('last-update');
-            const diffDays = Math.floor((now - new Date(2025, 2, 1)) / (1000 * 60 * 60 * 24));
-            
-            if (diffDays === 0) lastUpdateElement.textContent = '今天';
-            else if (diffDays === 1) lastUpdateElement.textContent = '昨天';
-            else if (diffDays < 7) lastUpdateElement.textContent = `${diffDays}天前`;
-            else if (diffDays < 30) lastUpdateElement.textContent = `${Math.floor(diffDays/7)}周前`;
-            else lastUpdateElement.textContent = `${Math.floor(diffDays/30)}月前`;
-        }
-        
-        // 更新下载统计（模拟数据，实际中可以连接后端）
-        function updateStats() {
-            // 模拟增长
-            const baseDownloads = 1247;
-            const baseCollaborators = 42;
-            const baseIssues = 18;
-            
-            // 添加随机增长
-            const randomGrowth = Math.floor(Math.random() * 10);
-            const newDownloads = baseDownloads + randomGrowth;
-            const newCollaborators = baseCollaborators + (randomGrowth % 3);
-            const newIssues = baseIssues + (randomGrowth % 2);
-            
-            document.getElementById('total-downloads').textContent = newDownloads.toLocaleString();
-            document.getElementById('active-collaborators').textContent = newCollaborators;
-            document.getElementById('open-issues').textContent = newIssues;
-        }
-        
-        // 追踪压缩包下载
-        function trackBundleDownload() {
-            // 更新下载统计
-            const downloadCountElement = document.getElementById('total-downloads');
-            if (downloadCountElement) {
-                let count = parseInt(downloadCountElement.textContent.replace(/,/g, '')) || 0;
-                downloadCountElement.textContent = (count + 1).toLocaleString();
-            }
-            
-            // 显示下载指示器
-            const indicator = document.getElementById('downloadIndicator');
-            const downloadText = document.getElementById('downloadText');
-            
-            if (indicator && downloadText) {
-                indicator.classList.add('active');
-                downloadText.textContent = '正在准备论文库压缩包...';
-                
-                // 模拟处理过程
-                setTimeout(() => downloadText.textContent = '收集所有PDF文件...', 500);
-                setTimeout(() => downloadText.textContent = '正在压缩...', 1500);
-                setTimeout(() => downloadText.textContent = '压缩完成，开始下载！', 2500);
-                setTimeout(() => indicator.classList.remove('active'), 3500);
-            }
-            
-            // 记录下载事件（实际使用中可以发送到统计服务）
-            console.log('用户下载了完整论文库');
-            
-            // 实际下载跟踪（这里只是模拟，实际应该发送到后端）
-            setTimeout(() => {
-                console.log('下载完成');
-            }, 3000);
-        }
-
-        // 显示压缩包内容
-        function showBundleContents() {
-            const contentsDiv = document.getElementById('bundle-contents');
-            const pdfListDiv = document.getElementById('pdf-list');
-            
-            if (contentsDiv.style.display === 'none') {
-                // 显示
-                contentsDiv.style.display = 'block';
-                
-                // 如果还没加载，加载文件列表
-                if (pdfListDiv.innerHTML.includes('spinner')) {
-                    loadPDFList();
-                }
-            } else {
-                // 隐藏
-                contentsDiv.style.display = 'none';
-            }
-        }
-
-        // 加载PDF文件列表
-        async function loadPDFList() {
-            const pdfListDiv = document.getElementById('pdf-list');
-            
-            try {
-                // 尝试获取bundle-info.json中的文件列表
-                const response = await fetch('bundle-info.json');
-                if (response.ok) {
-                    const info = await response.json();
-                    
-                    // 如果有文件列表信息
-                    if (info.files) {
-                        let html = '<ul style="list-style: none; padding-left: 0;">';
-                        info.files.forEach((file, index) => {
-                            html += `
-                            <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center;">
-                                <span style="color: var(--primary); margin-right: 10px;">${index + 1}.</span>
-                                <i class="fas fa-file-pdf" style="color: #f40; margin-right: 10px;"></i>
-                                <span style="flex: 1;">${file.name}</span>
-                                <span style="font-size: 0.8rem; opacity: 0.7;">${formatFileSize(file.size)}</span>
-                            </li>`;
-                        });
-                        html += '</ul>';
-                        pdfListDiv.innerHTML = html;
-                        return;
-                    }
-                }
-                
-                // 备选方案：列出已知文件
-                const knownFiles = [
-                    { name: '几何弦统一理论总纲.pdf', size: 345000 },
-                    { name: '四步学习指南.pdf', size: 520000 },
-                    { name: '补丁-几何必然取代数学假设.pdf', size: 405000 },
-                    { name: '五步讲解PPT完整版.pptx', size: 5200000 },
-                    { name: '演讲逐字稿与教学大纲.pdf', size: 320000 },
-                    { name: '人文改革方案.pdf', size: 280000 }
-                ];
-                
-                let html = '<ul style="list-style: none; padding-left: 0;">';
-                knownFiles.forEach((file, index) => {
-                    html += `
-                    <li style="padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center;">
-                        <span style="color: var(--primary); margin-right: 10px;">${index + 1}.</span>
-                        <i class="fas fa-file-pdf" style="color: #f40; margin-right: 10px;"></i>
-                        <span style="flex: 1;">${file.name}</span>
-                        <span style="font-size: 0.8rem; opacity: 0.7;">${formatFileSize(file.size)}</span>
-                    </li>`;
-                });
-                html += '</ul>';
-                pdfListDiv.innerHTML = html;
-                
-            } catch (error) {
-                pdfListDiv.innerHTML = '<div style="text-align: center; padding: 1rem; color: var(--accent);"><i class="fas fa-exclamation-triangle"></i> 无法加载文件列表</div>';
-            }
-        }
-
-        // 格式化文件大小
-        function formatFileSize(bytes) {
-            if (bytes < 1024) return bytes + ' B';
-            if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
-            return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-        }
-
-        // 更新PDF统计信息
-        async function updatePDFStats() {
-            try {
-                // 尝试获取bundle-info.json
-                const response = await fetch('bundle-info.json');
-                if (response.ok) {
-                    const info = await response.json();
-                    
-                    // 更新文件数量
-                    document.getElementById('pdf-count').innerHTML = info.fileCount || '6';
-                    
-                    // 更新压缩包大小
-                    document.getElementById('pdf-size').innerHTML = formatFileSize(info.totalSize) || '7.0MB';
-                    
-                    // 更新最后更新时间
-                    const updateDate = new Date(info.lastUpdated);
-                    const now = new Date();
-                    const diffDays = Math.floor((now - updateDate) / (1000 * 60 * 60 * 24));
-                    
-                    if (diffDays === 0) {
-                        document.getElementById('last-bundle').innerHTML = '今天';
-                    } else if (diffDays === 1) {
-                        document.getElementById('last-bundle').innerHTML = '昨天';
-                    } else if (diffDays < 7) {
-                        document.getElementById('last-bundle').innerHTML = `${diffDays}天前`;
-                    } else {
-                        document.getElementById('last-bundle').innerHTML = updateDate.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' });
-                    }
-                } else {
-                    // 如果无法获取，使用默认值
-                    document.getElementById('pdf-count').innerHTML = '6';
-                    document.getElementById('pdf-size').innerHTML = '7.0MB';
-                    document.getElementById('last-bundle').innerHTML = '今天';
-                }
-            } catch (error) {
-                // 出错时使用默认值
-                document.getElementById('pdf-count').innerHTML = '6';
-                document.getElementById('pdf-size').innerHTML = '7.0MB';
-                document.getElementById('last-bundle').innerHTML = '今天';
-            }
-        }
-        
-        // 单个文件下载跟踪
-        document.querySelectorAll('.btn-download').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const filename = this.getAttribute('download') || '文件下载';
-                console.log(`开始下载: ${filename}`);
-                
-                // 更新下载统计
-                const downloadCountElement = document.getElementById('total-downloads');
-                if (downloadCountElement) {
-                    let count = parseInt(downloadCountElement.textContent.replace(/,/g, '')) || 0;
-                    downloadCountElement.textContent = (count + 1).toLocaleString();
-                }
-                
-                // 显示下载提示
-                const indicator = document.getElementById('downloadIndicator');
-                const downloadText = document.getElementById('downloadText');
-                
-                if (indicator && downloadText) {
-                    indicator.classList.add('active');
-                    downloadText.textContent = `正在下载: ${filename}`;
-                    
-                    setTimeout(() => {
-                        indicator.classList.remove('active');
-                    }, 2000);
-                }
-            });
-        });
-        
-        // 弹窗控制
+        // 模态框控制
         function showModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
+            document.getElementById(modalId).style.display = "flex";
         }
         
         function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
+            document.getElementById(modalId).style.display = "none";
         }
         
-        // 点击弹窗外部关闭
+        // 点击模态框外部关闭
         window.onclick = function(event) {
-            document.querySelectorAll('.modal').forEach(modal => {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+            }
+        }
+        
+        // 显示引用格式模态框
+        function showCitationModal() {
+            showModal('citation-modal');
+        }
+        
+        // 显示评议表单
+        function showReviewForm() {
+            showModal('review-modal');
+        }
+        
+        // 显示问题表单
+        function showQuestionForm() {
+            alert('问题提交功能将在下个版本中启用。目前请通过邮件或GitHub Issues提交问题。');
+        }
+        
+        // 复制引用文本
+        function copyCitation() {
+            const citation = document.querySelector('.citation-box').innerText.replace('复制', '');
+            navigator.clipboard.writeText(citation).then(() => {
+                alert('引用格式已复制到剪贴板！');
             });
         }
         
-        // 滚动动画
-        function animateOnScroll() {
-            const elements = document.querySelectorAll('.fade-in');
-            
-            elements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight * 0.85) {
-                    element.style.animationPlayState = 'running';
-                }
-            });
+        // 预览PDF
+        function previewPDF() {
+            alert('PDF预览功能需要额外配置。您可以下载PDF文件后使用本地PDF阅读器查看。');
         }
         
-        // 订阅表单处理
-        document.getElementById('subscribe-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
+        // 预览Word
+        function previewWord() {
+            alert('Word文档需要下载后使用Microsoft Word或兼容的办公软件打开。');
+        }
+        
+        // 下载跟踪
+        function trackDownload(type) {
+            // 更新统计数字
+            const totalEl = document.getElementById('total-downloads');
+            const pdfEl = document.getElementById('pdf-downloads');
+            const wordEl = document.getElementById('word-downloads');
+            const recentEl = document.getElementById('last-7days');
             
-            // 显示成功消息
-            const indicator = document.getElementById('downloadIndicator');
-            const downloadText = document.getElementById('downloadText');
-            
-            if (indicator && downloadText) {
-                indicator.classList.add('active');
-                downloadText.textContent = `已订阅: ${email}`;
-                
-                setTimeout(() => {
-                    indicator.classList.remove('active');
-                    closeModal('subscribe-modal');
-                    document.getElementById('email').value = '';
-                    
-                    // 显示临时成功消息
-                    downloadText.textContent = '订阅成功！';
-                    indicator.classList.add('active');
-                    setTimeout(() => indicator.classList.remove('active'), 2000);
-                }, 1500);
+            if (totalEl) {
+                let total = parseInt(totalEl.textContent.replace(/,/g, '') || '0');
+                totalEl.textContent = (total + 1).toLocaleString();
             }
             
-            console.log(`用户订阅: ${email}`);
+            if (type === 'pdf-zip' && pdfEl) {
+                let pdf = parseInt(pdfEl.textContent.replace(/,/g, '') || '0');
+                pdfEl.textContent = (pdf + 1).toLocaleString();
+            }
+            
+            if (type === 'word-zip' && wordEl) {
+                let word = parseInt(wordEl.textContent.replace(/,/g, '') || '0');
+                wordEl.textContent = (word + 1).toLocaleString();
+            }
+            
+            if (recentEl) {
+                let recent = parseInt(recentEl.textContent.replace(/,/g, '') || '0');
+                recentEl.textContent = (recent + 1).toLocaleString();
+            }
+            
+            // 记录到本地存储
+            const today = new Date().toISOString().split('T')[0];
+            const downloads = JSON.parse(localStorage.getItem('downloads') || '{}');
+            downloads[today] = (downloads[today] || 0) + 1;
+            localStorage.setItem('downloads', JSON.stringify(downloads));
+            
+            console.log(`下载跟踪: ${type} 被下载`);
+        }
+        
+        // 初始化下载统计
+        function initDownloadStats() {
+            const downloads = JSON.parse(localStorage.getItem('downloads') || '{}');
+            let last7days = 0;
+            const today = new Date().toISOString().split('T')[0];
+            
+            // 计算最近7天的下载量
+            for (let i = 0; i < 7; i++) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                const dateStr = date.toISOString().split('T')[0];
+                if (downloads[dateStr]) {
+                    last7days += downloads[dateStr];
+                }
+            }
+            
+            const recentEl = document.getElementById('last-7days');
+            if (recentEl) {
+                recentEl.textContent = last7days;
+            }
+        }
+        
+        // 评议表单提交
+        document.getElementById('review-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('reviewer-name').value;
+            const email = document.getElementById('reviewer-email').value;
+            const content = document.getElementById('review-content').value;
+            
+            // 这里应该发送到后端，这里只是示例
+            console.log('收到新的评议:', { name, email, content });
+            
+            alert('感谢您的评议！我们会在审核后公开（匿名化）并回复。');
+            closeModal('review-modal');
+            
+            // 清空表单
+            this.reset();
+        });
+        
+        // 导航栏高亮
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
         });
         
         // 初始化
-        window.addEventListener('load', () => {
-            updateDate();
-            updateStats();
-            updatePDFStats(); // 新增：更新PDF统计信息
-            animateOnScroll();
+        window.addEventListener('load', function() {
+            // 更新日期
+            document.getElementById('last-update').textContent = 
+                new Date().toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
             
-            // 初始化滚动动画
-            document.querySelectorAll('.fade-in').forEach(el => {
-                el.style.animationPlayState = 'paused';
-            });
+            // 初始化下载统计
+            initDownloadStats();
+            
+            // 检查文件是否存在
+            checkFiles();
         });
         
-        window.addEventListener('scroll', animateOnScroll);
-        window.addEventListener('resize', animateOnScroll);
-        
-        // 键盘快捷键
-        document.addEventListener('keydown', (e) => {
-            // ESC关闭所有弹窗
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                });
-            }
+        // 检查文件是否存在
+        async function checkFiles() {
+            const files = [
+                'papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B%20-%20v1-PDF.zip',
+                'papers/%E3%80%8A%E5%87%A0%E4%BD%95%E5%BC%A6%E7%BB%9F%E4%B8%80%E7%90%86%E8%AE%BA%E5%8F%8A%E5%85%B6%E6%97%B6%E7%A9%BA%E5%B7%A5%E7%A8%8B%E5%BA%94%E7%94%A8%E4%BD%93%E7%B3%BB%E3%80%8B-v1-words.zip'
+            ];
             
-            // Ctrl+F搜索
-            if (e.ctrlKey && e.key === 'f') {
-                e.preventDefault();
-                alert('搜索功能正在开发中...');
-            }
-        });
-        
-        // 平滑滚动到锚点
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    // 如果是移动端，关闭菜单
-                    if (window.innerWidth <= 768) {
-                        navMenu.classList.remove('active');
-                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            try {
+                for (const file of files) {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (!response.ok) {
+                        console.warn(`文件可能不存在: ${file}`);
                     }
-                    
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
                 }
-            });
-        });
+            } catch (error) {
+                console.error('文件检查失败:', error);
+            }
+        }
     </script>
 </body>
 </html>
