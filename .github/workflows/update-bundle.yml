@@ -1,0 +1,48 @@
+name: Update Bundle Info
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天UTC 0点运行
+  push:
+    paths:
+      - 'papers/**'
+    branches: [ main ]
+
+jobs:
+  update-bundle:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Calculate file sizes
+      id: filesize
+      run: |
+        PDF_SIZE=$(stat -c%s "papers/《几何弦统一理论及其应用体系》 - v1-PDF.zip" 2>/dev/null || echo "0")
+        WORD_SIZE=$(stat -c%s "papers/《几何弦统一理论及其应用体系》-v1-words.zip" 2>/dev/null || echo "0")
+        echo "pdf_size=$PDF_SIZE" >> $GITHUB_OUTPUT
+        echo "word_size=$WORD_SIZE" >> $GITHUB_OUTPUT
+    
+    - name: Update bundle-info.json
+      run: |
+        # 读取现有JSON
+        if [ -f bundle-info.json ]; then
+          jq --arg date "$(date -Iseconds)" \
+             --arg pdfSize "${{ steps.filesize.outputs.pdf_size }}" \
+             --arg wordSize "${{ steps.filesize.outputs.word_size }}" \
+             '.bundle.lastUpdated = $date |
+              .packages[0].size = ($pdfSize | tonumber) |
+              .packages[1].size = ($wordSize | tonumber) |
+              .packages[0].totalSize = ($pdfSize | tonumber) |
+              .packages[1].totalSize = ($wordSize | tonumber) |
+              .metadata.generated = $date' \
+             bundle-info.json > bundle-info-updated.json
+          mv bundle-info-updated.json bundle-info.json
+        fi
+    
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add bundle-info.json
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update bundle-info.json with latest file sizes"
+        git push
