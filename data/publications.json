@@ -1,0 +1,40 @@
+{
+  "publications": [
+    {
+      "id": "GST-2025-001",
+      "title": "几何弦统一理论及其应用体系",
+      "authors": ["袁知春"],
+      "version": "1.0.0",
+      "publicationDate": "2025-03-15",
+      "type": "学术专著",
+      "category": "理论物理",
+      "status": "正式发布",
+      "abstract": "本文从几何第一性原理出发，构建了一个完整的统一理论框架，自然地推导出九维空间结构，并从几何关系中涌现出所有基本物理现象。",
+      "doi": "10.5281/zenodo.xxxxxxx",
+      "isbn": "978-3-16-148410-0",
+      "pages": 358,
+      "formats": ["PDF", "Word", "LaTeX"],
+      "downloads": 1247,
+      "citations": 12,
+      "keywords": ["几何弦理论", "统一理论", "弦理论", "理论物理", "几何物理"],
+      "peerReviews": 5,
+      "lastUpdated": "2025-03-15"
+    },
+    {
+      "id": "GST-2025-002",
+      "title": "几何弦理论中的维度涌现机制",
+      "authors": ["袁知春", "李教授"],
+      "version": "0.9.0",
+      "publicationDate": "2025-02-28",
+      "type": "研究论文",
+      "category": "数学物理",
+      "status": "预印本",
+      "abstract": "详细论述了从三维基础几何到九维完整空间的维度涌现过程，提供了严格的数学证明和几何推导。",
+      "pages": 87,
+      "formats": ["PDF", "LaTeX"],
+      "downloads": 320,
+      "keywords": ["维度涌现", "几何拓扑", "弦理论", "数学物理"],
+      "peerReviews": 3
+    }
+  ]
+}
